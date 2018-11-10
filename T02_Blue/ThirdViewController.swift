@@ -44,13 +44,17 @@ class ThirdViewController: UIViewController, UITextFieldDelegate {
                 
             }
             
-            
-            self.remainingTime.text = "00:" + String(self.remainingSeconds)
-        })
-        //send a randomly generated 6-digit number to the registered email or mobile number
-        if remainingSeconds == 0
-        {
+            if(self.remainingSeconds == 60)
+            {
+                self.remainingTime.text = "01:00"
             }
+            else
+            {
+                self.remainingTime.text = "00:" + String(self.remainingSeconds)
+            }
+            })
+        //send a randomly generated 6-digit number to the registered email or mobile number
+        
     }
     
     @IBAction func resendCodeAction(_ sender: UIButton) {
