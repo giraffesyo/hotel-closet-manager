@@ -8,15 +8,30 @@
 
 import UIKit
 
-class SecondViewController: UIViewController {
+class SecondViewController: UIViewController, UITextFieldDelegate {
 
+    @IBOutlet weak var userIdTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var forgotPasswordButton: UIButton!
+    @IBOutlet weak var createNewAccount: UIButton!
+    @IBOutlet weak var loginButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        userIdTextField.delegate = self
+        passwordTextField.delegate = self
 
         // Do any additional setup after loading the view.
     }
-    
 
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
     /*
     // MARK: - Navigation
 
