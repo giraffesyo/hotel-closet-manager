@@ -8,8 +8,15 @@
 
 import UIKit
 
-class FourthViewController: UIViewController {
+class FourthViewController: UIViewController, UITextFieldDelegate {
 
+    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var employeeIdTextField: UITextField!
+    @IBOutlet weak var mobileNoTextField: UITextField!
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var passTextField: UITextField!
+    @IBOutlet weak var confirmPassword: UITextField!
+    @IBOutlet weak var securityAnswer: UITextField!    
     @IBOutlet weak var dropDownButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
@@ -25,6 +32,10 @@ class FourthViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
     @IBAction func dropDownActionButton(_ sender: UIButton)
     {
         if tableView.isHidden{

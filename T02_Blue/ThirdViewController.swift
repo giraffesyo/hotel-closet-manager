@@ -57,13 +57,6 @@ class ThirdViewController: UIViewController, UITextFieldDelegate {
         
     }
     
-    @IBAction func resendCodeAction(_ sender: UIButton) {
-    
-        //resendCode
-    }
-    
-    
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
