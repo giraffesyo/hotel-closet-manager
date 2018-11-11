@@ -10,21 +10,70 @@ import UIKit
 
 class FourthViewController: UIViewController {
 
+    @IBOutlet weak var dropDownButton: UIButton!
+    @IBOutlet weak var tableView: UITableView!
+    
+    var questions = ["What was your first school?",
+                     "What was your first pet's name?",
+                     "What was the first foriegn country you visited?",
+                     "Name a person whom you like the most.",
+                     "What is your favaorite holiday destination?"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        tableView.isHidden = true
         // Do any additional setup after loading the view.
     }
-    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func dropDownActionButton(_ sender: UIButton)
+    {
+        if tableView.isHidden{
+            animate(toggle: true)
+        }else{
+            animate(toggle: false)
+        }
     }
-    */
 
+    func animate(toggle: Bool)
+    {
+        if toggle{
+            UIView.animate(withDuration: 0.3)
+            {
+                self.tableView.isHidden = false
+            }
+        }
+        else
+        {
+            UIView.animate(withDuration: 0.3)
+            {
+                    self.tableView.isHidden = true
+            }
+        }
+        
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+}
+
+extension FourthViewController: UITableViewDelegate, UITableViewDataSource
+{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return questions.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        cell.textLabel?.text = questions[indexPath.row]
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        dropDownButton.setTitle("\(questions[indexPath.row])", for: .normal)
+        animate(toggle: false)
+        dropDownButton.setTitleColor(UIColor.black, for: .normal)
+    }
+    
 }
