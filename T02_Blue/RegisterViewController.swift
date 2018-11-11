@@ -1,5 +1,5 @@
 //
-//  FourthViewController.swift
+//  RegisterViewController.swift
 //  T02_Blue
 //
 //  Created by Saptami Biswas on 11/10/18.
@@ -20,15 +20,16 @@ class FourthViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var dropDownButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
-    var questions = ["What was your first school?",
+    var questions = ["What was the name of your first school?",
                      "What was your first pet's name?",
                      "What was the first foriegn country you visited?",
-                     "Name a person whom you like the most.",
-                     "What is your favaorite holiday destination?"]
+                     "What is your mother's maiden name?",
+                     "What is your favorite holiday destination?"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.isHidden = true
+        self.navigationController!.navigationBar.isHidden = false
         // Do any additional setup after loading the view.
     }
 

@@ -1,5 +1,5 @@
 //
-//  SecondViewController.swift
+//  LoginViewController.swift
 //  T02_Blue
 //
 //  Created by Saptami Biswas on 11/9/18.
@@ -18,6 +18,7 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController!.navigationBar.isHidden = true
         userIdTextField.delegate = self
         passwordTextField.delegate = self
 

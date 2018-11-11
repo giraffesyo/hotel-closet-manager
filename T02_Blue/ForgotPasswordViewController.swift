@@ -1,5 +1,5 @@
 //
-//  ThirdViewController.swift
+//  ForgotPasswordViewController.swift
 //  T02_Blue
 //
 //  Created by Saptami Biswas on 11/10/18.
@@ -21,7 +21,7 @@ class ThirdViewController: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.navigationController!.navigationBar.isHidden = false
         
     }
     

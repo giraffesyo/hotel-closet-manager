@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  LoadingViewController.swift
 //  T02_Blue
 //
 //  Created by Josh Sheridan on 11/9/18.
@@ -18,6 +18,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController!.navigationBar.isHidden = true
         
         // Waits before seguing to the new view controller to set up all the databases
         Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (timer: Timer) -> Void in
