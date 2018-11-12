@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.13.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aft-58-FeX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aft-58-FeX">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.9"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -121,6 +121,9 @@
                                 <state key="normal" title="LOGIN" backgroundImage="button-5">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="loginButtonAction:" destination="fps-xE-7rb" eventType="touchUpInside" id="xLC-1C-dxJ"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="app name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7C0-AF-kBB">
                                 <rect key="frame" x="-3" y="64" width="417" height="81"/>
@@ -129,16 +132,22 @@
                                 <color key="textColor" red="0.8948971805" green="0.90783568150000005" blue="0.94275027509999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="H3k-s4-gQb">
+                                <rect key="frame" x="202" y="639" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="7ek-fe-hKd"/>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="H3k-s4-gQb" id="h7k-32-rIK"/>
                         <outlet property="createNewAccount" destination="bNx-jd-RDz" id="hee-yg-Qru"/>
                         <outlet property="forgotPasswordButton" destination="5uS-9g-SfO" id="NWU-Eq-zUi"/>
                         <outlet property="loginButton" destination="8lp-Vy-D87" id="2jY-nG-UNt"/>
                         <outlet property="passwordTextField" destination="tl7-c7-NBf" id="t1j-ej-aeX"/>
                         <outlet property="userIdTextField" destination="k26-YV-Ra8" id="qCY-Fo-j1f"/>
+                        <segue destination="fjG-B5-OP5" kind="show" identifier="segueToInventoryFromLogin" id="ofH-e5-04r"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KIc-5s-bcD" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -202,6 +211,9 @@
                                 <state key="normal" title="Login">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <segue destination="fjG-B5-OP5" kind="show" id="B3b-me-j4n"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rv5-a1-eR8">
                                 <rect key="frame" x="178" y="335" width="68" height="30"/>
@@ -225,6 +237,56 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ylf-Bm-mBH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2784.057971014493" y="-187.50000000000003"/>
+        </scene>
+        <!--Inventory Closets-->
+        <scene sceneID="n8J-aM-cFg">
+            <objects>
+                <tableViewController title="Inventory Closets" id="fjG-B5-OP5" customClass="InventoryClosetsTableViewController" customModule="T02_Blue" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="aTK-Id-X0o">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <navigationBar key="tableHeaderView" contentMode="scaleToFill" id="Jsb-65-XIu">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <items>
+                                <navigationItem title="Inventory Closets" id="vVQ-lQ-xnm">
+                                    <barButtonItem key="rightBarButtonItem" systemItem="add" id="UAL-4J-5dC">
+                                        <connections>
+                                            <action selector="addCloset:" destination="fjG-B5-OP5" id="tHr-Gz-KTg"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </navigationItem>
+                            </items>
+                        </navigationBar>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="B62-C6-R3T" style="IBUITableViewCellStyleDefault" id="ztD-jr-wYa">
+                                <rect key="frame" x="0.0" y="72" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ztD-jr-wYa" id="yzr-55-Jza">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="B62-C6-R3T">
+                                            <rect key="frame" x="20" y="0.0" width="374" height="43.666666666666664"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="fjG-B5-OP5" id="Ax4-o4-YBQ"/>
+                            <outlet property="delegate" destination="fjG-B5-OP5" id="76v-68-c7u"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Ex-pI-w1L" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1906" y="1211"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="Sek-4e-N8Q">
@@ -441,4 +503,7 @@
         <image name="password_image" width="180" height="180"/>
         <image name="user_icon" width="512" height="512"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="B3b-me-j4n"/>
+    </inferredMetricsTieBreakers>
 </document>

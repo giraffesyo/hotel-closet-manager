@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F09A2842198E31300833D6E /* InventoryClosetsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F09A2832198E31300833D6E /* InventoryClosetsTableViewController.swift */; };
 		1FA11C75219684140018A52E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA11C74219684140018A52E /* LoginViewController.swift */; };
 		1FADB248219773C900E5F178 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FADB247219773C900E5F178 /* RegisterViewController.swift */; };
 		1FB17D0B2197456E00911796 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB17D0A2197456E00911796 /* ForgotPasswordViewController.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1F09A2832198E31300833D6E /* InventoryClosetsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryClosetsTableViewController.swift; sourceTree = "<group>"; };
 		1FA11C74219684140018A52E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		1FADB247219773C900E5F178 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		1FB17D0A2197456E00911796 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
@@ -67,6 +69,7 @@
 				1FA11C74219684140018A52E /* LoginViewController.swift */,
 				1FB17D0A2197456E00911796 /* ForgotPasswordViewController.swift */,
 				1FADB247219773C900E5F178 /* RegisterViewController.swift */,
+				1F09A2832198E31300833D6E /* InventoryClosetsTableViewController.swift */,
 				4B0B1E1E21964CED004B5CBA /* Main.storyboard */,
 				4B0B1E2421964CF6004B5CBA /* Assets.xcassets */,
 				4B0B1E2621964CF6004B5CBA /* LaunchScreen.storyboard */,
@@ -147,6 +150,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F09A2842198E31300833D6E /* InventoryClosetsTableViewController.swift in Sources */,
 				1FADB248219773C900E5F178 /* RegisterViewController.swift in Sources */,
 				1FA11C75219684140018A52E /* LoginViewController.swift in Sources */,
 				4B0B1E2321964CED004B5CBA /* T02_Blue.xcdatamodeld in Sources */,
