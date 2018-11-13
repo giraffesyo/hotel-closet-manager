@@ -39,6 +39,11 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func loginButtonAction(_ sender: UIButton)
     {
+        if userIdTextField.text == "" || passwordTextField.text == ""
+        {
+            showIncompleteFieldAlert()
+        }
+        else{
         Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (timer: Timer) -> Void in
             self.activityIndicator.isHidden = false
             self.secondsRemaining -= 1
@@ -52,13 +57,21 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
                 
             }
         })
-        
+        }
         /*In this function oyther details are to be added. That is if the entered email-id and password is not there in the database then it would show an alert to the user.*/
         
         //if incorrect email-id or password, then
         // call showAlert()
         
         //showAlert()
+    }
+    
+    @IBAction func showIncompleteFieldAlert()
+    {
+        let alert = UIAlertController(title: "Incomplete Fields!", message: "Both the fields of e-mail id and password must be filled", preferredStyle: .alert)
+        let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
     }
     
     @IBAction func showAlert()
