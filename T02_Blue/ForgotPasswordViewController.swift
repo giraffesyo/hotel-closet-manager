@@ -25,11 +25,17 @@ class ThirdViewController: UIViewController, UITextFieldDelegate {
         self.navigationController!.navigationBar.isHidden = false
         securityQuestionView.isHidden = true
         newPasswordView.isHidden = true
+        
+        enterEmail.delegate = self
+        securityAnswer.delegate = self
+        newPassword.delegate = self
+        confirmPassword.delegate = self
     }
     
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        print("debug 1")
         if textField === enterEmail {
-            
+            print("debug 2")
             //TODO: add logic to check value with values in the database, and move on if email is validated
             
             //TODO: retrieve security question and answer from database that match the entered email
