@@ -259,7 +259,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <segue destination="fjG-B5-OP5" kind="show" id="B3b-me-j4n"/>
+                                            <segue destination="fps-xE-7rb" kind="show" id="luX-xO-jOm"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -782,6 +782,6 @@
         <image name="user_icon" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ofH-e5-04r"/>
+        <segue reference="luX-xO-jOm"/>
     </inferredMetricsTieBreakers>
 </document>
