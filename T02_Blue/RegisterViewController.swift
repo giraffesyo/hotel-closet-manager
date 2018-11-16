@@ -29,7 +29,6 @@ class FourthViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.isHidden = true
-        self.navigationController!.navigationBar.isHidden = false
         // Do any additional setup after loading the view.
     }
 

@@ -18,14 +18,25 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var timer = Timer.self
-    var secondsRemaining = 5
+    var secondsRemaining = 3
     
     override func viewDidLoad() {
         super.viewDidLoad()
         activityIndicator.isHidden = true
-        self.navigationController!.navigationBar.isHidden = true
         userIdTextField.delegate = self
         passwordTextField.delegate = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationController!.setNavigationBarHidden(true, animated: animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        self.navigationController!.setNavigationBarHidden(false, animated: animated)
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
