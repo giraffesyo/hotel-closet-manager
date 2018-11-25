@@ -1,10 +1,7 @@
 //
 //  LoadingViewController.swift
 //  T02_Blue
-//
-//  Created by Josh Sheridan on 11/9/18.
-//  Copyright © 2018 Josh Sheridan. All rights reserved.
-//
+
 
 import UIKit
 

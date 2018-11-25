@@ -1,10 +1,6 @@
 //
 //  InventoryClosetsTableViewController.swift
 //  T02_Blue
-//
-//  Created by Saptami Biswas on 11/11/18.
-//  Copyright © 2018 Josh Sheridan. All rights reserved.
-//
 
 import UIKit
 import FirebaseDatabase
@@ -12,11 +8,14 @@ import FirebaseDatabase
 class InventoryClosetsTableViewController: UITableViewController {
     
     let ref: DatabaseReference! = Database.database().reference()
+    let db = InventoryDatabase.init()
     var closets = [Closet]()
     var closetObserverIdentifier: UInt = 0
     var deleteObserverIdentifier: UInt = 0
+    var Editing: Bool = false
     
     struct Closet {
+        let id: String!
         let floor: Int!
         let number: Int!
     }
@@ -24,11 +23,8 @@ class InventoryClosetsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var items = [UIBarButtonItem]()
-        //push all items to the right
-        //items.append(UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil))
-        items.append(UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(navigateToAddClosetView)))
-        self.navigationItem.rightBarButtonItems = items
+        //setup our navigation bar
+        setupNavigationBar()
         //load the closets from our data source
         loadClosets()
         // Add deletion detection
@@ -54,6 +50,13 @@ class InventoryClosetsTableViewController: UITableViewController {
         return closets.count
     }
     
+    // Handles the transition that brings the user to the inventory screen for the tapped closet/row
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //The user selected a cell, check what mode we're in and perform the appropriate action
+        
+    }
+    
+    // Puts information on each cell
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         let floorNumber = closets[indexPath.row].floor!
@@ -67,18 +70,27 @@ class InventoryClosetsTableViewController: UITableViewController {
         return cell
     }
     
+    // handles the deletion of closets from firebase when the delete button is pressed
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            //get id from cell, this will be what we use to delete it from firebase since its the key name
+            let id: String = closets[indexPath.row].id
+            // delete the closet
+            db.deleteCloset(closetId: id)
+        }
+    }
     
-    
+    // Loads the closets from firebase, sets up an observer which automatically updates the view whenever a new closet is added
     func loadClosets() -> Void {
-        
         // create a callback that subscribes to child added events for the closets key in our database
         self.closetObserverIdentifier = ref.child("closets").queryOrderedByKey().observe(.childAdded, with: { snapshot in
-            if let closet = snapshot.value as? [AnyHashable:Int]{
-                // get our closet number and floor number out of the snapshot
+            if let closet = snapshot.value as? [AnyHashable: Int]{
+                // get our closet number and floor number out of the snapshot, snapshot key will be used as unique id
+                let id: String = snapshot.key
                 let closetNumber: Int = closet["closet"]!
                 let floorNumber: Int = closet["floor"]!
                 // add the closet to end of our closets collection
-                self.closets.insert(Closet(floor: floorNumber, number: closetNumber), at: self.closets.endIndex)
+                self.closets.insert(Closet( id: id, floor: floorNumber, number: closetNumber ), at: self.closets.endIndex)
                 // reload table view
                 self.tableView.reloadData()
             }}
@@ -88,20 +100,55 @@ class InventoryClosetsTableViewController: UITableViewController {
     
     func setupDeleteObserver() -> Void {
         self.deleteObserverIdentifier = ref.child("closets").queryOrderedByKey().observe(.childRemoved, with: {snapshot in
-            // remove closet observer if it exists
+            // remove closet observer if it exists, that way its not stacked when we call load closets again
             if self.closetObserverIdentifier != 0 {
                 self.ref.removeObserver(withHandle: self.closetObserverIdentifier)
             }
+            // empty our closets collection so we can reload it
             self.closets.removeAll()
             self.loadClosets()
         })
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        //remove observers here
+        //remove observers here so we don't stack them when reentering the view
         ref.removeObserver(withHandle: self.deleteObserverIdentifier)
         ref.removeObserver(withHandle: self.closetObserverIdentifier)
     }
+    
+    // Toggles editing state on or off
+    @objc func toggleEditMode() -> Void {
+        self.Editing = !self.Editing
+        // this enables the editing mode for rows that return editingstyle.delete (all rows when self.Editing is true)
+        self.setEditing(self.Editing, animated: true)
+        // reset navigation bar
+        setupNavigationBar()
+    }
+    
+    // Necessary for self.setEditing() method to show our editing icons
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        if(self.Editing){
+            return UITableViewCell.EditingStyle.delete
+        } else {
+            return UITableViewCell.EditingStyle.none
+        }
+    }
+    
+    // Shows the appropriate navigation bar depending if we are editing or not, called on toggle and when view loads
+    func setupNavigationBar() {
+        var items = [UIBarButtonItem]()
+        if(self.Editing){
+            // Done, when pressed brings you back out of edit mode
+            items.append(UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(toggleEditMode)))
+        } else {
+            // + button, segues to the add closet view
+            items.append(UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(navigateToAddClosetView)))
+            //  when pressed it changes view into edit mode
+            items.append(UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(toggleEditMode)))
+        }
+        self.navigationItem.rightBarButtonItems = items
+    }
+    
     
     @objc func navigateToAddClosetView() -> Void {
         self.performSegue(withIdentifier: "Add new closet", sender: self)

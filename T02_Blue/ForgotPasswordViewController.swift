@@ -1,10 +1,6 @@
 //
 //  ForgotPasswordViewController.swift
 //  T02_Blue
-//
-//  Created by Saptami Biswas on 11/10/18.
-//  Copyright © 2018 Josh Sheridan. All rights reserved.
-//
 
 // TODO: overwrite the password that matches the entered email with the new entered password and store the new one in the database
 

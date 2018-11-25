@@ -1,10 +1,7 @@
 //
 //  InventoryDatabase.swift
 //  T02_Blue
-//
-//  Created by Michael McQuade on 11/25/18.
-//  Copyright © 2018 Josh Sheridan. All rights reserved.
-//
+
 
 import UIKit
 import FirebaseDatabase
@@ -51,8 +48,16 @@ class InventoryDatabase: NSObject {
     
     //Delete a closet
     func deleteCloset(closetId: String) -> Void {
+        
         // first delete all items in the closet
-        self.ref.child("items").queryOrderedByKey().queryEqual(toValue: closetId, childKey: "closetId").ref.removeValue()
+        self.ref.child("items").queryOrdered(byChild: "closetId").queryEqual(toValue: closetId).observe(.value, with: {snapshot in
+            if let items = snapshot.value as? [String: [String: AnyObject]] {
+                for(key, _ ) in items {
+                    self.ref.child("items").child(key).removeValue()
+                }
+            }
+        })
+        // then delete the closet itself
         self.ref.child("closets/\(closetId)").removeValue()
     }
     

@@ -1,10 +1,7 @@
 //
 //  RegisterViewController.swift
 //  T02_Blue
-//
-//  Created by Saptami Biswas on 11/10/18.
-//  Copyright © 2018 Josh Sheridan. All rights reserved.
-//
+
 
 import UIKit
 
