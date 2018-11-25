@@ -60,6 +60,14 @@ class ClosetInventoryTableViewController: UITableViewController {
         }
     }
     
+    //handle deletion button clicked on a cell
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete{
+            let id = items[indexPath.row].id
+            db.deleteItem(itemId: id)
+        }
+    }
+    
     // Toggles editing state on or off
     @objc func toggleEditMode() -> Void {
         self.Editing = !self.Editing
