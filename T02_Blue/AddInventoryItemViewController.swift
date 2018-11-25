@@ -9,25 +9,34 @@ import UIKit
 
 class AddInventoryItemViewController: UIViewController, UITextFieldDelegate {
 
-    @IBOutlet weak var addItemName: UITextField!
-    @IBOutlet weak var addInventoryAmount: UITextField!
-    @IBOutlet weak var addThresholdAmount: UITextField!
-    
+    @IBOutlet weak var tfName: UITextField!
+    @IBOutlet weak var tfThresholdAmount: UITextField!
+    let db = InventoryDatabase.init()
+    var closet: String = ""
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.addItemName.delegate = self
-        self.addInventoryAmount.delegate = self
-        self.addThresholdAmount.delegate = self
+        self.tfName.delegate = self
+        self.tfThresholdAmount.delegate = self
+        addDoneButtonOnKeyboard()
         
-        self.addDoneButtonOnKeyboard()
-        // Do any additional setup after loading the view.
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
+        let nextTag = textField.tag + 1
+        let nextResponder = textField.superview?.viewWithTag(nextTag)
+        
+        if nextResponder != nil {
+            // Give control to the next text field
+            nextResponder?.becomeFirstResponder()
+        } else {
+            // close keypad
+        
+            textField.resignFirstResponder()
+        }
+        return false
     }
     
+    // add a done button right above numeric keypad
     func addDoneButtonOnKeyboard()
     {
         let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 50))
@@ -42,14 +51,28 @@ class AddInventoryItemViewController: UIViewController, UITextFieldDelegate {
         doneToolbar.items = items
         doneToolbar.sizeToFit()
         
-        self.addInventoryAmount.inputAccessoryView = doneToolbar
+        self.tfThresholdAmount.inputAccessoryView = doneToolbar
     }
-    
+    // done button should close the keypad
     @objc func doneButtonAction()
     {
-        self.addInventoryAmount.resignFirstResponder()
+        self.tfThresholdAmount.resignFirstResponder()
     }
     
+    @IBAction func SavePressed(_ sender: UIButton) {
+        let itemName: String = tfName.text!
+        let maximumCount: Int? = Int(tfThresholdAmount.text!)
+        if (itemName == "" || maximumCount == nil ){
+            // the user entered bad/non numeric data somehow
+            // TODO: put a message saying invalid numbers
+            // TODO: change this to a guard let
+            return
+        }
+        // Add the closet to the database
+        db.createItem(closetId: self.closet, name: itemName, maximumCount: maximumCount!)
+        // Transition back to the closets screen
+        navigationController?.popViewController(animated: false)
+    }
     /*
     // MARK: - Navigation
 

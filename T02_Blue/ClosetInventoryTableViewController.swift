@@ -4,84 +4,177 @@
 
 
 import UIKit
+import FirebaseDatabase
 
 class ClosetInventoryTableViewController: UITableViewController {
-
+    
+    var closet: String = ""
+    let ref: DatabaseReference! = Database.database().reference()
+    let db = InventoryDatabase.init()
+    struct Item {
+        var id: String {
+            get {
+            return closetId + name
+            }
+        }
+        let closetId: String!
+        let name: String!
+        let maximumCount: Int!
+        let count: Int!
+    }
+    
+    var items: [Item] = [Item]()
+    var Editing: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        setupNavigationBar()
+        loadItems()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-
+        
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
-
+    
     // MARK: - Table view data source
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return items.count
     }
-
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
+    
+    // Necessary for self.setEditing() method to show our editing icons
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        if(self.Editing){
+            return UITableViewCell.EditingStyle.delete
+        } else {
+            return UITableViewCell.EditingStyle.none
+        }
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    
+    // Toggles editing state on or off
+    @objc func toggleEditMode() -> Void {
+        self.Editing = !self.Editing
+        // this enables the editing mode for rows that return editingstyle.delete (all rows when self.Editing is true)
+        self.setEditing(self.Editing, animated: true)
+        // reset navigation bar
+        setupNavigationBar()
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    
+    
+    // Shows the appropriate navigation bar depending if we are editing or not, called on toggle and when view loads
+    func setupNavigationBar() {
+        var items = [UIBarButtonItem]()
+        if(self.Editing){
+            // Done, when pressed brings you back out of edit mode
+            items.append(UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(toggleEditMode)))
+        } else {
+            // + button, segues to the add item view
+            items.append(UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(navigateToAddItemView)))
+            //  when pressed it changes view into edit mode
+            items.append(UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(toggleEditMode)))
+        }
+        self.navigationItem.rightBarButtonItems = items
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
+    
+    
+    @objc func navigateToAddItemView() -> Void {
+        self.performSegue(withIdentifier: "Add new item", sender: self)
     }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "Add new item" {
+            let destination = segue.destination as! AddInventoryItemViewController
+            destination.closet = self.closet
+        }
     }
-    */
-
+    
+    
+    // Loads the items from firebase, sets up an observer which automatically updates the view whenever a new item is added
+    func loadItems() -> Void {
+        print("hello world")
+        // create a callback that subscribes to child added events for the items key in this closet
+        self.ref.child("items").queryOrdered(byChild: "closetId").queryEqual(toValue: self.closet).observe(.childAdded, with: {snapshot in
+            
+            if let value = snapshot.value as? [String: Any] {
+                // get all values out of the dictionary
+                let closetId = value["closetId"] as! String
+                let name = value["name"] as! String
+                let maximumCount = value["maximumCount"] as! Int
+                let count = value["count"] as! Int
+                // create our struct from the values we obtained
+                let item = Item(closetId: closetId, name: name, maximumCount: maximumCount, count: count)
+                // insert our item into the end of our items collection
+                self.items.insert(item, at: self.items.endIndex)
+                //reload table view
+                
+                self.tableView.reloadData()
+            }
+            
+        })
+    }
+    
+    
+     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+     let cell = tableView.dequeueReusableCell(withIdentifier: "item cell", for: indexPath)
+        let item: Item! = items[indexPath.row]
+        let cellText = "\(item.name!)"
+        let cellSubText = "\(item.count!)/\(item.maximumCount!)"
+        cell.textLabel?.text = cellText
+        cell.detailTextLabel?.text = cellSubText
+     
+     return cell
+     }
+    
+    
+    /*
+     // Override to support conditional editing of the table view.
+     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+     // Return false if you do not want the specified item to be editable.
+     return true
+     }
+     */
+    
+    /*
+     // Override to support editing the table view.
+     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+     if editingStyle == .delete {
+     // Delete the row from the data source
+     tableView.deleteRows(at: [indexPath], with: .fade)
+     } else if editingStyle == .insert {
+     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+     }
+     }
+     */
+    
+    /*
+     // Override to support rearranging the table view.
+     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
+     
+     }
+     */
+    
+    /*
+     // Override to support conditional rearranging of the table view.
+     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+     // Return false if you do not want the item to be re-orderable.
+     return true
+     }
+     */
+    
+    /*
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

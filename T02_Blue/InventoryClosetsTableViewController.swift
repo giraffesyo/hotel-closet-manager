@@ -12,6 +12,7 @@ class InventoryClosetsTableViewController: UITableViewController {
     var closets = [Closet]()
     var closetObserverIdentifier: UInt = 0
     var deleteObserverIdentifier: UInt = 0
+    var selectedId: String = ""
     var Editing: Bool = false
     
     struct Closet {
@@ -52,8 +53,11 @@ class InventoryClosetsTableViewController: UITableViewController {
     
     // Handles the transition that brings the user to the inventory screen for the tapped closet/row
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //The user selected a cell, check what mode we're in and perform the appropriate action
-        
+        //The user selected a cell, we don't do anything if we're in editing mode
+        if(!self.Editing){
+            self.selectedId = closets[indexPath.row].id
+            performSegue(withIdentifier: "Closet Inventory Details", sender: self)
+        }
     }
     
     // Puts information on each cell
@@ -154,6 +158,12 @@ class InventoryClosetsTableViewController: UITableViewController {
         self.performSegue(withIdentifier: "Add new closet", sender: self)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "Closet Inventory Details"){
+            let destination = segue.destination as! ClosetInventoryTableViewController
+            destination.closet = self.selectedId
+        }
+    }
     
     /*
      // Override to support conditional editing of the table view.

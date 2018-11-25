@@ -281,7 +281,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ylf-Bm-mBH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2784.057971014493" y="-187.50000000000003"/>
+            <point key="canvasLocation" x="2945" y="-447"/>
         </scene>
         <!--Inventory Closets-->
         <scene sceneID="n8J-aM-cFg">
@@ -317,6 +317,7 @@
                     </tableView>
                     <connections>
                         <segue destination="oft-Ik-Que" kind="show" identifier="Add new closet" animates="NO" id="flc-L7-KYQ"/>
+                        <segue destination="JoH-gh-5zN" kind="show" identifier="Closet Inventory Details" id="Om3-1g-vLN"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Ex-pI-w1L" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -331,22 +332,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <navigationBar key="tableHeaderView" contentMode="scaleToFill" id="pVc-bG-r4u">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <items>
-                                <navigationItem title="Closet Inventory Details" id="Jvj-gA-kNJ">
-                                    <barButtonItem key="rightBarButtonItem" systemItem="add" id="Sxx-dE-3CP">
-                                        <connections>
-                                            <segue destination="IB2-a7-wev" kind="show" id="wgV-vE-fxE"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </navigationItem>
-                            </items>
-                        </navigationBar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="shQ-fR-nU9" detailTextLabel="HTA-Mb-VUT" style="IBUITableViewCellStyleSubtitle" id="obL-MA-2GO">
-                                <rect key="frame" x="0.0" y="72" width="414" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="item cell" textLabel="shQ-fR-nU9" detailTextLabel="HTA-Mb-VUT" style="IBUITableViewCellStyleSubtitle" id="obL-MA-2GO">
+                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="obL-MA-2GO" id="1lY-jw-a0e">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
@@ -378,6 +366,9 @@
                             <outlet property="delegate" destination="JoH-gh-5zN" id="Onj-ac-b1C"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="IB2-a7-wev" kind="show" identifier="Add new item" id="4Jk-By-ymn"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E5Z-dN-gGr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -442,7 +433,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="emM-MW-6ml" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3702.898550724638" y="1370.3804347826087"/>
+            <point key="canvasLocation" x="3706" y="1375"/>
         </scene>
         <!--Add New Closet-->
         <scene sceneID="Fzr-Yq-IDu">
@@ -474,7 +465,7 @@
                                     <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="SavePressed:" destination="oft-Ik-Que" eventType="touchUpInside" id="10V-5S-cqv"/>
+                                    <action selector="SavePressed:" destination="oft-Ik-Que" eventType="touchUpInside" id="Cj1-2N-x8m"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add Floor Number:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xDY-Qw-1QJ">
@@ -533,28 +524,31 @@
                                 <state key="normal" title="Save" backgroundImage="blue_button">
                                     <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="SavePressed:" destination="IB2-a7-wev" eventType="touchUpInside" id="ILU-g5-e57"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="F3S-Pq-CMT">
                                 <rect key="frame" x="39" y="188" width="336" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="B2c-Au-UAI">
+                            <textField opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="B2c-Au-UAI">
                                 <rect key="frame" x="39" y="333" width="336" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="MsC-wg-QoC"/>
                     </view>
                     <connections>
-                        <outlet property="addItemName" destination="F3S-Pq-CMT" id="2eM-Yb-OV3"/>
-                        <outlet property="addThresholdAmount" destination="B2c-Au-UAI" id="mVj-et-2vj"/>
+                        <outlet property="tfName" destination="F3S-Pq-CMT" id="ntv-lr-XrF"/>
+                        <outlet property="tfThresholdAmount" destination="B2c-Au-UAI" id="VY2-Rl-vvl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cEG-7g-dp0" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -777,6 +771,6 @@
         <image name="user_icon" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="s77-zL-NRf"/>
+        <segue reference="luX-xO-jOm"/>
     </inferredMetricsTieBreakers>
 </document>
