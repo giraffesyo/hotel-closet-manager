@@ -22,6 +22,13 @@ class InventoryClosetsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        var items = [UIBarButtonItem]()
+        //push all items to the right
+        //items.append(UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil))
+        items.append(UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(navigateToAddClosetView)))
+        self.navigationItem.rightBarButtonItems = items
+        //load the closets from our data source
         loadClosets()
     }
     
@@ -57,23 +64,17 @@ class InventoryClosetsTableViewController: UITableViewController {
         
         return cell
     }
-    /*
-    @IBAction func addCloset(_ sender: UIBarButtonItem)
-    {
-        closets.append("Closet \(closets.count + 1)")
-        //tableView.insertRows(at: <#T##[IndexPath]#>, with: <#T##UITableView.RowAnimation#>)
-        tableView.reloadData()
-    }*/
+    
+ 
     
     func loadClosets() -> Void {
-        print("hello world")
+        
         // create a callback that subscribes to child added events for the closets key in our database
         ref.child("closets").queryOrderedByKey().observe(.childAdded, with: { snapshot in
             if let closet = snapshot.value as? [AnyHashable:Int]{
                 // get our closet number and floor number out of the snapshot
                 let closetNumber: Int = closet["closet"]!
                 let floorNumber: Int = closet["floor"]!
-                print("floor number is \(floorNumber)")
                 // add the closet to our closets collection
                 self.closets.insert(Closet(floor: floorNumber, number: closetNumber), at: 0)
                 // reload table view
@@ -81,7 +82,11 @@ class InventoryClosetsTableViewController: UITableViewController {
             }}
             )
         }
-        
+    
+    @objc func navigateToAddClosetView() -> Void {
+        self.performSegue(withIdentifier: "Add new closet", sender: self)
+    }
+    
         
         /*
          // Override to support conditional editing of the table view.

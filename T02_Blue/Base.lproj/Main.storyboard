@@ -318,6 +318,9 @@
                             <outlet property="delegate" destination="fjG-B5-OP5" id="76v-68-c7u"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="oft-Ik-Que" kind="show" identifier="Add new closet" animates="NO" id="flc-L7-KYQ"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Ex-pI-w1L" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
