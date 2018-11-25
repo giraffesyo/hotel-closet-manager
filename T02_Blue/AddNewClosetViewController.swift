@@ -40,7 +40,7 @@ class AddNewClosetViewController: UIViewController, UITextFieldDelegate {
         // Add the closet to the database
         db.createCloset(closetNumber: closetNumber!, floorNumber: floorNumber!)
         // Transition back to the closets screen
-        
+        navigationController?.popViewController(animated: false)
     }
     
     /*

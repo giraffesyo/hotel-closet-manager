@@ -308,9 +308,6 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="JoH-gh-5zN" kind="show" id="ltB-TB-Whq"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

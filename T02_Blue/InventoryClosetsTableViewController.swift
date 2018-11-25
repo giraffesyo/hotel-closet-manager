@@ -12,7 +12,6 @@ import FirebaseDatabase
 class InventoryClosetsTableViewController: UITableViewController {
     
     let ref: DatabaseReference! = Database.database().reference()
-    //var closets = ["Closet 1"]
     var closets = [Closet]()
     var closetObserverIdentifier: UInt = 0
     var deleteObserverIdentifier: UInt = 0
@@ -48,12 +47,10 @@ class InventoryClosetsTableViewController: UITableViewController {
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return closets.count
     }
     
@@ -62,6 +59,7 @@ class InventoryClosetsTableViewController: UITableViewController {
         let floorNumber = closets[indexPath.row].floor!
         let closetNumber = closets[indexPath.row].number!
         let cellText = "Floor \(floorNumber) Closet \(closetNumber)"
+        
         cell.textLabel?.text = cellText
         
         // Configure the cell...
@@ -79,8 +77,8 @@ class InventoryClosetsTableViewController: UITableViewController {
                 // get our closet number and floor number out of the snapshot
                 let closetNumber: Int = closet["closet"]!
                 let floorNumber: Int = closet["floor"]!
-                // add the closet to our closets collection
-                self.closets.insert(Closet(floor: floorNumber, number: closetNumber), at: 0)
+                // add the closet to end of our closets collection
+                self.closets.insert(Closet(floor: floorNumber, number: closetNumber), at: self.closets.endIndex)
                 // reload table view
                 self.tableView.reloadData()
             }}
