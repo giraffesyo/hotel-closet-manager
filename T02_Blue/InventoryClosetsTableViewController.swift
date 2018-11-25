@@ -14,6 +14,8 @@ class InventoryClosetsTableViewController: UITableViewController {
     let ref: DatabaseReference! = Database.database().reference()
     //var closets = ["Closet 1"]
     var closets = [Closet]()
+    var closetObserverIdentifier: UInt = 0
+    var deleteObserverIdentifier: UInt = 0
     
     struct Closet {
         let floor: Int!
@@ -30,15 +32,17 @@ class InventoryClosetsTableViewController: UITableViewController {
         self.navigationItem.rightBarButtonItems = items
         //load the closets from our data source
         loadClosets()
+        // Add deletion detection
+        setupDeleteObserver()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        }
+    }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        }
+    }
     
     
     // MARK: - Table view data source
@@ -65,12 +69,12 @@ class InventoryClosetsTableViewController: UITableViewController {
         return cell
     }
     
- 
+    
     
     func loadClosets() -> Void {
         
         // create a callback that subscribes to child added events for the closets key in our database
-        ref.child("closets").queryOrderedByKey().observe(.childAdded, with: { snapshot in
+        self.closetObserverIdentifier = ref.child("closets").queryOrderedByKey().observe(.childAdded, with: { snapshot in
             if let closet = snapshot.value as? [AnyHashable:Int]{
                 // get our closet number and floor number out of the snapshot
                 let closetNumber: Int = closet["closet"]!
@@ -80,57 +84,75 @@ class InventoryClosetsTableViewController: UITableViewController {
                 // reload table view
                 self.tableView.reloadData()
             }}
-            )
-        }
+        )
+    }
+    
+    
+    func setupDeleteObserver() -> Void {
+        self.deleteObserverIdentifier = ref.child("closets").queryOrderedByKey().observe(.childRemoved, with: {snapshot in
+            // remove closet observer if it exists
+            if self.closetObserverIdentifier != 0 {
+                self.ref.removeObserver(withHandle: self.closetObserverIdentifier)
+            }
+            self.closets.removeAll()
+            self.loadClosets()
+        })
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        //remove observers here
+        ref.removeObserver(withHandle: self.deleteObserverIdentifier)
+        ref.removeObserver(withHandle: self.closetObserverIdentifier)
+    }
     
     @objc func navigateToAddClosetView() -> Void {
         self.performSegue(withIdentifier: "Add new closet", sender: self)
     }
     
-        
-        /*
-         // Override to support conditional editing of the table view.
-         override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-         // Return false if you do not want the specified item to be editable.
-         return true
-         }
-         */
-        
-        /*
-         // Override to support editing the table view.
-         override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-         if editingStyle == .delete {
-         // Delete the row from the data source
-         tableView.deleteRows(at: [indexPath], with: .fade)
-         } else if editingStyle == .insert {
-         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-         }
-         }
-         */
-        
-        /*
-         // Override to support rearranging the table view.
-         override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-         
-         }
-         */
-        
-        /*
-         // Override to support conditional rearranging of the table view.
-         override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-         // Return false if you do not want the item to be re-orderable.
-         return true
-         }
-         */
-        
-        /*
-         // MARK: - Navigation
-         
-         // In a storyboard-based application, you will often want to do a little preparation before navigation
-         override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-         // Get the new view controller using segue.destination.
-         // Pass the selected object to the new view controller.
-         }
-         */
-        
+    
+    /*
+     // Override to support conditional editing of the table view.
+     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+     // Return false if you do not want the specified item to be editable.
+     return true
+     }
+     */
+    
+    /*
+     // Override to support editing the table view.
+     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+     if editingStyle == .delete {
+     // Delete the row from the data source
+     tableView.deleteRows(at: [indexPath], with: .fade)
+     } else if editingStyle == .insert {
+     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+     }
+     }
+     */
+    
+    /*
+     // Override to support rearranging the table view.
+     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
+     
+     }
+     */
+    
+    /*
+     // Override to support conditional rearranging of the table view.
+     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+     // Return false if you do not want the item to be re-orderable.
+     return true
+     }
+     */
+    
+    /*
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
