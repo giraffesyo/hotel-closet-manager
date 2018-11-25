@@ -4,6 +4,7 @@
 
 
 import UIKit
+import FirebaseDatabase
 
 class AddNewClosetViewController: UIViewController, UITextFieldDelegate {
     
@@ -11,6 +12,7 @@ class AddNewClosetViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var tfFloorNumber: UITextField!
     
     let db = InventoryDatabase.init()
+    let ref: DatabaseReference! = Database.database().reference()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,10 +36,22 @@ class AddNewClosetViewController: UIViewController, UITextFieldDelegate {
             // TODO: change this to a guard let
             return
         }
-        // Add the closet to the database
-        db.createCloset(closetNumber: closetNumber!, floorNumber: floorNumber!)
-        // Transition back to the closets screen
-        navigationController?.popViewController(animated: false)
+        let closetId = "F\(floorNumber!)C\(closetNumber!)"
+        
+        // first, ensure that item doesn't already exist
+        self.ref.child("closets").child(closetId).observeSingleEvent(of: .value, with: {snapshot in
+            // we don't want to do anything if this snapshot exists, so we'll return false to let the user know it already exists
+            if snapshot.exists() {
+                let alert = UIAlertController(title: "Duplicate Item", message: "Closet \(closetNumber!) already exists on this floor.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                return
+            } else {
+                // Add the closet to the database
+                self.db.createCloset(closetNumber: closetNumber!, floorNumber: floorNumber!)
+                // Transition back to the closets screen
+                self.navigationController?.popViewController(animated: false)
+            }})
     }
     
     /*
