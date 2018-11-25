@@ -11,10 +11,12 @@ import UIKit
 class AddNewClosetViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var addClosetNumber: UITextField!
+    @IBOutlet weak var addFloorNumber: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.addClosetNumber.delegate = self
+        self.addFloorNumber.delegate = self
         // Do any additional setup after loading the view.
     }
     
