@@ -26,6 +26,13 @@ class InventoryDatabase: NSObject {
         self.ref.child("items").child(itemId).setValue(["closetId": closetId, "name": name, "count": 0, "maximumCount": maximumCount])
     }
     
+    // Retrieves view ref for a given closet
+    /*func retrieveItems(closetId: String) -> DatabaseQuery {
+        let view: DatabaseQuery = self.ref.child("items").queryOrderedByKey().queryEqual(toValue: closetId, childKey: "closetId")
+        view.
+    }*/
+    
+    
     //Update the details of an item
     func updateItemDetails(itemId: String, name: String, maximumCount: Int) -> Void {
         self.ref.child("items/\(itemId)/name").setValue(name)

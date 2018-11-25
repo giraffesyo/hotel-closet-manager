@@ -50,25 +50,12 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func loginButtonAction(_ sender: UIButton)
     {
-        if userIdTextField.text == "" || passwordTextField.text == ""
+       /* if userIdTextField.text == "" || passwordTextField.text == ""
         {
             showIncompleteFieldAlert()
-        }
-        else{
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (timer: Timer) -> Void in
-            self.activityIndicator.isHidden = false
-            self.secondsRemaining -= 1
-            self.activityIndicator.startAnimating()
-            
-            if self.secondsRemaining == 0 {
-                
-                timer.invalidate()
-                self.activityIndicator.stopAnimating()
-                self.performSegue(withIdentifier: "segueToInventoryFromLogin", sender: self)
-                
-            }
-        })
-        }
+        }*/
+        self.performSegue(withIdentifier: "segueToInventoryFromLogin", sender: self)
+        
         /*In this function oyther details are to be added. That is if the entered email-id and password is not there in the database then it would show an alert to the user.*/
         
         //if incorrect email-id or password, then

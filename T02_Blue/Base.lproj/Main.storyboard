@@ -291,23 +291,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <navigationBar key="tableHeaderView" contentMode="scaleToFill" id="Jsb-65-XIu">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <items>
-                                <navigationItem title="Inventory Closets" id="vVQ-lQ-xnm">
-                                    <barButtonItem key="rightBarButtonItem" systemItem="add" id="UAL-4J-5dC">
-                                        <connections>
-                                            <action selector="addCloset:" destination="fjG-B5-OP5" id="tHr-Gz-KTg"/>
-                                            <segue destination="oft-Ik-Que" kind="show" id="Tap-rc-ZfK"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </navigationItem>
-                            </items>
-                        </navigationBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="B62-C6-R3T" style="IBUITableViewCellStyleDefault" id="ztD-jr-wYa">
-                                <rect key="frame" x="0.0" y="72" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ztD-jr-wYa" id="yzr-55-Jza">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
