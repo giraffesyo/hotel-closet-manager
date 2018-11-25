@@ -11,6 +11,8 @@ class ClosetInventoryTableViewController: UITableViewController {
     var closet: String = ""
     let ref: DatabaseReference! = Database.database().reference()
     let db = InventoryDatabase.init()
+    var itemObserverIdentifier: UInt = 0
+    var deleteObserverIdentifier: UInt = 0
     struct Item {
         var id: String {
             get {
@@ -29,6 +31,7 @@ class ClosetInventoryTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
+        addDeleteObserver()
         loadItems()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -94,12 +97,23 @@ class ClosetInventoryTableViewController: UITableViewController {
         }
     }
     
+    // Adds an observer which handles deletion events
+    func addDeleteObserver() -> Void {
+        self.deleteObserverIdentifier = self.ref.child("items").queryOrdered(byChild: "closetId").queryEqual(toValue: self.closet).observe(.childRemoved, with: {snapshot in
+            // remove the items from the list and then reload items
+            self.items.removeAll()
+            self.loadItems()
+        })
+    }
     
     // Loads the items from firebase, sets up an observer which automatically updates the view whenever a new item is added
     func loadItems() -> Void {
-        print("hello world")
+        //if we already registered an observer, unregister it
+        if itemObserverIdentifier != 0 {
+            self.ref.removeObserver(withHandle: itemObserverIdentifier)
+        }
         // create a callback that subscribes to child added events for the items key in this closet
-        self.ref.child("items").queryOrdered(byChild: "closetId").queryEqual(toValue: self.closet).observe(.childAdded, with: {snapshot in
+        self.itemObserverIdentifier = self.ref.child("items").queryOrdered(byChild: "closetId").queryEqual(toValue: self.closet).observe(.childAdded, with: {snapshot in
             
             if let value = snapshot.value as? [String: Any] {
                 // get all values out of the dictionary
