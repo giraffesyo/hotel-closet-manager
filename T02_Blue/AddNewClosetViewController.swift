@@ -8,15 +8,20 @@
 
 import UIKit
 
-class AddNewClosetViewController: UIViewController {
+class AddNewClosetViewController: UIViewController, UITextFieldDelegate {
 
+    @IBOutlet weak var addClosetNumber: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.addClosetNumber.delegate = self
         // Do any additional setup after loading the view.
     }
     
-
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
     /*
     // MARK: - Navigation
 
