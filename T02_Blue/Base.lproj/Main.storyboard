@@ -487,6 +487,9 @@
                                 <state key="normal" title="Save" backgroundImage="blue_button">
                                     <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="SavePressed:" destination="oft-Ik-Que" eventType="touchUpInside" id="10V-5S-cqv"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add Floor Number:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xDY-Qw-1QJ">
                                 <rect key="frame" x="43" y="162" width="172" height="39"/>
@@ -507,8 +510,8 @@
                         <viewLayoutGuide key="safeArea" id="Ckv-S2-fGe"/>
                     </view>
                     <connections>
-                        <outlet property="addClosetNumber" destination="gMY-1H-lA7" id="deO-mI-o4c"/>
-                        <outlet property="addFloorNumber" destination="hsr-gv-CYu" id="pbl-h9-JIM"/>
+                        <outlet property="tfClosetNumber" destination="gMY-1H-lA7" id="MVS-Lz-h00"/>
+                        <outlet property="tfFloorNumber" destination="hsr-gv-CYu" id="tAu-r7-AOW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WU6-Aq-n7e" userLabel="First Responder" sceneMemberID="firstResponder"/>
