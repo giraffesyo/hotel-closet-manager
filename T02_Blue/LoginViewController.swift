@@ -50,7 +50,7 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         {
             showIncompleteFieldAlert()
         }*/
-        self.performSegue(withIdentifier: "segueToInventoryFromLogin", sender: self)
+        self.performSegue(withIdentifier: "to home screen", sender: self)
         
         /*In this function oyther details are to be added. That is if the entered email-id and password is not there in the database then it would show an alert to the user.*/
         

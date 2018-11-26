@@ -13,8 +13,6 @@
 		1F8CA096219C7684004436C7 /* ClosetInventoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8CA095219C7684004436C7 /* ClosetInventoryTableViewController.swift */; };
 		1F8CA098219C7708004436C7 /* AddInventoryItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8CA097219C7708004436C7 /* AddInventoryItemViewController.swift */; };
 		1FA11C75219684140018A52E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA11C74219684140018A52E /* LoginViewController.swift */; };
-		1FADB248219773C900E5F178 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FADB247219773C900E5F178 /* RegisterViewController.swift */; };
-		1FB17D0B2197456E00911796 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB17D0A2197456E00911796 /* ForgotPasswordViewController.swift */; };
 		4B0B1E1B21964CED004B5CBA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0B1E1A21964CED004B5CBA /* AppDelegate.swift */; };
 		4B0B1E1D21964CED004B5CBA /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0B1E1C21964CED004B5CBA /* LoadingViewController.swift */; };
 		4B0B1E2021964CED004B5CBA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B0B1E1E21964CED004B5CBA /* Main.storyboard */; };
@@ -23,6 +21,7 @@
 		4B0B1E2821964CF6004B5CBA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B0B1E2621964CF6004B5CBA /* LaunchScreen.storyboard */; };
 		5165F2EA21AA93ED00663B37 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5165F2E921AA93ED00663B37 /* GoogleService-Info.plist */; };
 		5165F2EC21AA964100663B37 /* InventoryDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5165F2EB21AA964100663B37 /* InventoryDatabase.swift */; };
+		51A9477E21ABB30000D9D8F9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A9477D21ABB30000D9D8F9 /* HomeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,8 +32,6 @@
 		1F8CA095219C7684004436C7 /* ClosetInventoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosetInventoryTableViewController.swift; sourceTree = "<group>"; };
 		1F8CA097219C7708004436C7 /* AddInventoryItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddInventoryItemViewController.swift; sourceTree = "<group>"; };
 		1FA11C74219684140018A52E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		1FADB247219773C900E5F178 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
-		1FB17D0A2197456E00911796 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		4B0B1E1721964CED004B5CBA /* T02_Blue.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = T02_Blue.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B0B1E1A21964CED004B5CBA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4B0B1E1C21964CED004B5CBA /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
@@ -45,6 +42,7 @@
 		4B0B1E2921964CF6004B5CBA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5165F2E921AA93ED00663B37 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5165F2EB21AA964100663B37 /* InventoryDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryDatabase.swift; sourceTree = "<group>"; };
+		51A9477D21ABB30000D9D8F9 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		D33213D640E06E26C4F01940 /* Pods-T02_Blue.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-T02_Blue.release.xcconfig"; path = "Pods/Target Support Files/Pods-T02_Blue/Pods-T02_Blue.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -102,8 +100,6 @@
 				4B0B1E1A21964CED004B5CBA /* AppDelegate.swift */,
 				4B0B1E1C21964CED004B5CBA /* LoadingViewController.swift */,
 				1FA11C74219684140018A52E /* LoginViewController.swift */,
-				1FB17D0A2197456E00911796 /* ForgotPasswordViewController.swift */,
-				1FADB247219773C900E5F178 /* RegisterViewController.swift */,
 				1F09A2832198E31300833D6E /* InventoryClosetsTableViewController.swift */,
 				1F8CA095219C7684004436C7 /* ClosetInventoryTableViewController.swift */,
 				1F8CA093219C760B004436C7 /* AddNewClosetViewController.swift */,
@@ -114,6 +110,7 @@
 				4B0B1E2921964CF6004B5CBA /* Info.plist */,
 				4B0B1E2121964CED004B5CBA /* T02_Blue.xcdatamodeld */,
 				5165F2EB21AA964100663B37 /* InventoryDatabase.swift */,
+				51A9477D21ABB30000D9D8F9 /* HomeViewController.swift */,
 			);
 			path = T02_Blue;
 			sourceTree = "<group>";
@@ -245,12 +242,11 @@
 			files = (
 				1F09A2842198E31300833D6E /* InventoryClosetsTableViewController.swift in Sources */,
 				5165F2EC21AA964100663B37 /* InventoryDatabase.swift in Sources */,
-				1FADB248219773C900E5F178 /* RegisterViewController.swift in Sources */,
 				1FA11C75219684140018A52E /* LoginViewController.swift in Sources */,
 				1F8CA096219C7684004436C7 /* ClosetInventoryTableViewController.swift in Sources */,
 				1F8CA098219C7708004436C7 /* AddInventoryItemViewController.swift in Sources */,
+				51A9477E21ABB30000D9D8F9 /* HomeViewController.swift in Sources */,
 				4B0B1E2321964CED004B5CBA /* T02_Blue.xcdatamodeld in Sources */,
-				1FB17D0B2197456E00911796 /* ForgotPasswordViewController.swift in Sources */,
 				4B0B1E1D21964CED004B5CBA /* LoadingViewController.swift in Sources */,
 				1F8CA094219C760B004436C7 /* AddNewClosetViewController.swift in Sources */,
 				4B0B1E1B21964CED004B5CBA /* AppDelegate.swift in Sources */,
