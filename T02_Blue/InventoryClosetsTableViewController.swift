@@ -148,7 +148,7 @@ class InventoryClosetsTableViewController: UITableViewController {
             // + button, segues to the add closet view
             items.append(UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(navigateToAddClosetView)))
             //  when pressed it changes view into edit mode
-            items.append(UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(toggleEditMode)))
+            items.append(UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(toggleEditMode)))
         }
         self.navigationItem.rightBarButtonItems = items
     }
