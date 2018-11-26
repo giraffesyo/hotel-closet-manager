@@ -12,7 +12,6 @@
 		1F8CA094219C760B004436C7 /* AddNewClosetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8CA093219C760B004436C7 /* AddNewClosetViewController.swift */; };
 		1F8CA096219C7684004436C7 /* ClosetInventoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8CA095219C7684004436C7 /* ClosetInventoryTableViewController.swift */; };
 		1F8CA098219C7708004436C7 /* AddInventoryItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8CA097219C7708004436C7 /* AddInventoryItemViewController.swift */; };
-		1F8CA09A219C7922004436C7 /* EditInventoryDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8CA099219C7922004436C7 /* EditInventoryDetailsViewController.swift */; };
 		1FA11C75219684140018A52E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA11C74219684140018A52E /* LoginViewController.swift */; };
 		1FADB248219773C900E5F178 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FADB247219773C900E5F178 /* RegisterViewController.swift */; };
 		1FB17D0B2197456E00911796 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB17D0A2197456E00911796 /* ForgotPasswordViewController.swift */; };
@@ -33,7 +32,6 @@
 		1F8CA093219C760B004436C7 /* AddNewClosetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewClosetViewController.swift; sourceTree = "<group>"; };
 		1F8CA095219C7684004436C7 /* ClosetInventoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosetInventoryTableViewController.swift; sourceTree = "<group>"; };
 		1F8CA097219C7708004436C7 /* AddInventoryItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddInventoryItemViewController.swift; sourceTree = "<group>"; };
-		1F8CA099219C7922004436C7 /* EditInventoryDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditInventoryDetailsViewController.swift; sourceTree = "<group>"; };
 		1FA11C74219684140018A52E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		1FADB247219773C900E5F178 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		1FB17D0A2197456E00911796 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
@@ -110,7 +108,6 @@
 				1F8CA095219C7684004436C7 /* ClosetInventoryTableViewController.swift */,
 				1F8CA093219C760B004436C7 /* AddNewClosetViewController.swift */,
 				1F8CA097219C7708004436C7 /* AddInventoryItemViewController.swift */,
-				1F8CA099219C7922004436C7 /* EditInventoryDetailsViewController.swift */,
 				4B0B1E1E21964CED004B5CBA /* Main.storyboard */,
 				4B0B1E2421964CF6004B5CBA /* Assets.xcassets */,
 				4B0B1E2621964CF6004B5CBA /* LaunchScreen.storyboard */,
@@ -250,7 +247,6 @@
 				5165F2EC21AA964100663B37 /* InventoryDatabase.swift in Sources */,
 				1FADB248219773C900E5F178 /* RegisterViewController.swift in Sources */,
 				1FA11C75219684140018A52E /* LoginViewController.swift in Sources */,
-				1F8CA09A219C7922004436C7 /* EditInventoryDetailsViewController.swift in Sources */,
 				1F8CA096219C7684004436C7 /* ClosetInventoryTableViewController.swift in Sources */,
 				1F8CA098219C7708004436C7 /* AddInventoryItemViewController.swift in Sources */,
 				4B0B1E2321964CED004B5CBA /* T02_Blue.xcdatamodeld in Sources */,

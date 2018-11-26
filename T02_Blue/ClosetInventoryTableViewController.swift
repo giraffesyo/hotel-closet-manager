@@ -13,16 +13,18 @@ class ClosetInventoryTableViewController: UITableViewController {
     let db = InventoryDatabase.init()
     var itemObserverIdentifier: UInt = 0
     var deleteObserverIdentifier: UInt = 0
+    var modifyObserverIdentifier: UInt = 0
+    
     struct Item {
         var id: String {
             get {
-            return closetId + name
+                return closetId + name
             }
         }
-        let closetId: String!
-        let name: String!
-        let maximumCount: Int!
-        let count: Int!
+        var closetId: String!
+        var name: String!
+        var maximumCount: Int!
+        var count: Int!
     }
     
     var items: [Item] = [Item]()
@@ -32,6 +34,7 @@ class ClosetInventoryTableViewController: UITableViewController {
         super.viewDidLoad()
         setupNavigationBar()
         addDeleteObserver()
+        addModifyObserver()
         loadItems()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -88,7 +91,7 @@ class ClosetInventoryTableViewController: UITableViewController {
             // + button, segues to the add item view
             items.append(UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(navigateToAddItemView)))
             //  when pressed it changes view into edit mode
-            items.append(UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(toggleEditMode)))
+            items.append(UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(toggleEditMode)))
         }
         self.navigationItem.rightBarButtonItems = items
     }
@@ -103,6 +106,23 @@ class ClosetInventoryTableViewController: UITableViewController {
             let destination = segue.destination as! AddInventoryItemViewController
             destination.closet = self.closet
         }
+    }
+    
+    // Adds an observer which handles modification events
+    func addModifyObserver() -> Void {
+        self.modifyObserverIdentifier = self.ref.child("items").queryOrdered(byChild: "closetId").queryEqual(toValue: self.closet).observe(.childChanged, with: {snapshot in
+            if let value = snapshot.value as? [String: Any] {
+                // get item id (its the key)
+                let id: String = snapshot.key
+                // get new max count out of the dictionary
+                let maximumCount = value["maximumCount"] as! Int
+                //find the item in our items collection and update it
+                let foundIndex: Int = self.items.index { $0.id == id }!
+                self.items[foundIndex].maximumCount = maximumCount
+                //reload table view
+                self.tableView.reloadData()
+            }
+        })
     }
     
     // Adds an observer which handles deletion events
@@ -141,18 +161,67 @@ class ClosetInventoryTableViewController: UITableViewController {
         })
     }
     
+    // this is the swipe controls for edit and delete
+    /*
+     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+     
+     let editAction = UITableViewRowAction(style: .default, title: "Edit", handler: {_,indexPath in
+     print("editing"
+     )})
+     let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete", handler: {_,indexPath in
+     print("deleting"
+     )})
+     return [deleteAction, editAction]
+     }*/
     
-     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-     let cell = tableView.dequeueReusableCell(withIdentifier: "item cell", for: indexPath)
+    // when the "i" is pressed this event happens
+    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        let selectedItem = items[indexPath.row].id
+        let selectedItemName = items[indexPath.row].name
+        
+        
+        // create alert
+        let alert = UIAlertController(title: "Edit Maximum Quantity", message: "Enter new maximum quantity", preferredStyle: .alert)
+        //add text field
+        alert.addTextField(configurationHandler: {textfield in
+            textfield.text = String(self.items[indexPath.row].maximumCount)
+            textfield.keyboardType = .numberPad
+        })
+        //process the input
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Save", style: .default, handler: { (action: UIAlertAction) in
+            guard let textField = alert.textFields?.first else {
+                return
+            }
+            guard let newMaximumCount: Int = Int(textField.text!) else {
+                //they entered a string
+                return
+            }
+            
+            self.db.updateItemDetails(itemId: selectedItem, name: selectedItemName!, maximumCount: newMaximumCount)
+        }))
+        present(alert, animated: true, completion: nil)
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "item cell", for: indexPath)
         let item: Item! = items[indexPath.row]
         let cellText = "\(item.name!)"
         let cellSubText = "\(item.count!)/\(item.maximumCount!)"
+        cell.accessoryType = UITableViewCell.AccessoryType.detailButton
         cell.textLabel?.text = cellText
         cell.detailTextLabel?.text = cellSubText
-     
-     return cell
-     }
+        
+        return cell
+    }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        // clean up our observers when we leave the view
+        self.ref.removeObserver(withHandle: itemObserverIdentifier)
+        self.ref.removeObserver(withHandle: deleteObserverIdentifier)
+        self.ref.removeObserver(withHandle: modifyObserverIdentifier)
+    }
     
     /*
      // Override to support conditional editing of the table view.
