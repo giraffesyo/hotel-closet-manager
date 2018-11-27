@@ -43,6 +43,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         // get username and password from the form
         let username: String = userIdTextField?.text ?? ""
         let password: String = passwordTextField?.text ?? ""
+        // clear password box
+        passwordTextField?.text = ""
         
         if username == "" || password == ""
         {
@@ -50,7 +52,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
         Auth.auth().signIn(withEmail: username, password: password) { (user, error) in
             if user != nil {
-                // we sucessfully logged in, segue to logged in screen
+                // we sucessfully logged in, segue to logged in screen and clear textboxes
+                self.userIdTextField?.text = ""
                 self.goToHomeScreen()
             } else {
                 // we have an error
