@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+
 class ResetPasswordController: UIViewController {
 
     @IBOutlet weak var tbCurrentPassword: UITextField!
@@ -22,7 +23,53 @@ class ResetPasswordController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
+    
+    @IBAction func changePasswordAuth(_ sender: Any) {
+        let currentPassword = tbCurrentPassword.text
+        let newPassword = tbNewPassword.text
+        let verifyPassword = tbVarifyPassword.text
+        // Get current user
+        let user = Auth.auth().currentUser
+        // Get current user email
+        let email = user?.email
+        let credential = EmailAuthProvider.credential(withEmail: email!, password: currentPassword!)
+        
+        // Reauthenticate the current user
+        user?.reauthenticateAndRetrieveData(with: credential, completion: {(authResult, error) in
+            if error != nil {
+                self.showAlert(title: "Oops", message: error?.localizedDescription ?? "Authentication failed.")
+            }else if newPassword != verifyPassword {
+                self.showAlert(title: "Oops", message: error?.localizedDescription ?? "Passwords do not match.")
+            }else if newPassword == verifyPassword{
+                user?.updatePassword(to: newPassword!, completion: {(error) in
+                    if error != nil {
+                        self.showAlert(title: "Oops", message: error?.localizedDescription ?? "Failed to change password.")
+                    }else {
+                    let alert = UIAlertController(title: "Success", message: "Password Changed.", preferredStyle: .alert)
+                        let action = UIAlertAction(title: "Ok", style: .default, handler: {action in
+                            self.goBack()
+                        })
+                        alert.addAction(action)
+                        // show the alert even if this screen is no longer visible
+                        // e.g. if the user clicked back but password still changed we should let them know
+                        UIApplication.shared.keyWindow?.rootViewController?.present(alert, animated: true, completion: nil )
+                    }
+                })
+            }
+        })
+    }
+    
+    @objc func goBack() -> Void {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    func showAlert(title: String, message: String) -> Void
+    {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
+    }
     /*
     // MARK: - Navigation
 
@@ -32,5 +79,4 @@ class ResetPasswordController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
 }
