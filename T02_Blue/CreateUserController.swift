@@ -32,9 +32,19 @@ class CreateUserController: UIViewController {
             return
         }
         //send the creation request over the network to our lambda function
-        db.createAccount(email: "test@test.net", password: "test123") { (AdminResponse) in
-            print("printing from create user controller")
-            print(AdminResponse)
+        db.createAccount(email: email, password: password) { (Response) in
+            
+            let success = Response["success"] as! Bool
+            if success{
+                // we have their uid if it was successful
+                let uid = Response["result"] as! String
+                print("success")
+            } else {
+                //if not successful we have an error message
+                let result = Response["result"] as! [String: String]
+                print(result["message"])
+                print("no bueno")
+            }
         }
     }
     

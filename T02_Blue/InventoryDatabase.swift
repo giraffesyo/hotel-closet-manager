@@ -69,15 +69,23 @@ class InventoryDatabase: NSObject {
         let success: Bool
     }
     
-    func createAccount(email username: String, password: String, completion: ( _ result: AdminResponse) -> Void) -> Void {
+    func createAccount(email username: String, password: String, completion: @escaping ( _ success: [String: AnyObject]) -> Void) -> Void {
         let urlString = "https://us-central1-hotel-management-5d4ed.cloudfunctions.net/createUser"
         //let urlString = "http://localhost:5000/hotel-management-5d4ed/us-central1/createUser"
         // create parameters to be used as http body
         let parameters: Parameters = ["email": username, "password": password, "psk": psk]
         //create the request
         Alamofire.request(urlString, method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON(completionHandler: {response in
-            if let data = response.result.value {
-                print(data)
+            switch response.result {
+            case .success:
+                if let result = response.result.value {
+                    let JSON = result as! [String: AnyObject]
+                    completion(JSON)
+                }
+            case .failure ( let error):
+                // our api shouldnt return errors in this manner so we shouldnt reach this
+                print("reached .failure")
+                print(error)
             }
             
         })
