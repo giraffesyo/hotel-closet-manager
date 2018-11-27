@@ -7,13 +7,25 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class UserManagementController: UITableViewController {
 
+    struct User: Equatable {
+        static func == (lhs: User, rhs: User) -> Bool {
+        return lhs.uid == rhs.uid
+        }
+        let uid: String
+        let email: String
+    }
+    var users = [User]()
+    
+    var usersRef: DatabaseReference! = Database.database().reference().child("/users")
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationControls()
+        setupObservers()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -25,12 +37,12 @@ class UserManagementController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return self.users.count
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -48,15 +60,39 @@ class UserManagementController: UITableViewController {
     @objc func goToUserCreation() -> Void {
         performSegue(withIdentifier: "to user creation", sender: self)
     }
-    /*
+    
+    func setupObservers() -> Void {
+        // Listen for new users in the Firebase database
+        usersRef.observe(.childAdded, with: { (snapshot) -> Void in
+            let uid = snapshot.key
+            let value = snapshot.value as! [String: AnyObject]
+            let email = value["email"] as! String
+            let user = User(uid: uid, email: email)
+            self.users.append(user)
+            self.tableView.insertRows(at: [IndexPath(row: self.users.count-1, section: 0)], with: UITableView.RowAnimation.automatic)
+        })
+        // Listen for deleted users in the Firebase database
+        usersRef.observe(.childRemoved, with: { (snapshot) -> Void in
+            let uid = snapshot.key
+            let value = snapshot.value as! [String: AnyObject]
+            let email = value["email"] as! String
+            let user = User(uid: uid, email: email)
+            
+            let index = self.users.index(of: user)!
+            self.users.remove(at: index)
+            self.tableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: UITableView.RowAnimation.automatic)
+        })
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
+        let cell = tableView.dequeueReusableCell(withIdentifier: "user", for: indexPath)
+        // set email to the label
+        cell.textLabel?.text = users[indexPath.row].email
+        
 
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
