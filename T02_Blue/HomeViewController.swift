@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class HomeViewController: UIViewController {
 
@@ -43,9 +44,11 @@ class HomeViewController: UIViewController {
         performSegue(withIdentifier: "to password reset", sender: self)
     }
     
+    
     @objc func performLogout() -> Void {
-        //todo
-        print("not implemented")
+        try? Auth.auth().signOut()
+        self.navigationController?.popViewController(animated: false)
+        
     }
     //Segue to the users view
     @objc func goToUsers() -> Void {
