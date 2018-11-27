@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import FirebaseAuth
 class ResetPasswordController: UIViewController {
 
     @IBOutlet weak var tbCurrentPassword: UITextField!
@@ -16,7 +16,9 @@ class ResetPasswordController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        //Auth.auth().currentUser?.email
+        //let credential = EmailAuthProvider.credential(withEmail: String, password: String)
+        
         // Do any additional setup after loading the view.
     }
     
