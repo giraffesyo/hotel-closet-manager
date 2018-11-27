@@ -1,5 +1,5 @@
 //
-//  ResetPasswordController.swift
+//  EditUsersController.swift
 //  T02_Blue
 //
 //  Created by joshua mcmahan on 11/27/18.
@@ -8,12 +8,8 @@
 
 import UIKit
 
-class ResetPasswordController: UIViewController {
+class EditUsersController: UIViewController {
 
-    @IBOutlet weak var tbCurrentPassword: UITextField!
-    @IBOutlet weak var tbNewPassword: UITextField!
-    @IBOutlet weak var tbVarifyPassword: UITextField!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 

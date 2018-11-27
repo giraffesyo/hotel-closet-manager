@@ -33,6 +33,10 @@ class UserManagementController: UITableViewController {
         return 0
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "to edit user", sender: self)
+    }
+    
     func navigationControls() {
         var items = [UIBarButtonItem]()
         
