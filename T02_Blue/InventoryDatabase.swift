@@ -5,8 +5,10 @@
 
 import UIKit
 import FirebaseDatabase
+import Alamofire
 
 class InventoryDatabase: NSObject {
+    let psk: String = "Xh$N56@0,QD(N(34H6H;tpLk+~gT]R/H}y}KkP=;|r}ttOmsu7ZVl[]doHjr[{zCL,SRz)HdFUS.Dj$u"
     var ref: DatabaseReference! = Database.database().reference()
     
     //Returns true if successfully created the closet
@@ -61,5 +63,24 @@ class InventoryDatabase: NSObject {
         // then delete the closet itself
         self.ref.child("closets/\(closetId)").removeValue()
     }
+    
+    struct AdminResponse {
+        let result: String
+        let success: Bool
+    }
+    
+    func createAccount(email username: String, password: String, completion: ( _ result: AdminResponse) -> Void) -> Void {
+        let urlString = "https://us-central1-hotel-management-5d4ed.cloudfunctions.net/createUser"
+        //let urlString = "http://localhost:5000/hotel-management-5d4ed/us-central1/createUser"
+        // create parameters to be used as http body
+        let parameters: Parameters = ["email": username, "password": password, "psk": psk]
+        //create the request
+        Alamofire.request(urlString, method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON(completionHandler: {response in
+            if let data = response.result.value {
+                print(data)
+            }
+            
+        })
+        }
     
 }

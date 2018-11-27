@@ -25,7 +25,7 @@
 		C50E349521AD31B9005FC94D /* UserManagementController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50E349421AD31B9005FC94D /* UserManagementController.swift */; };
 		C50E349721AD3397005FC94D /* ResetPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50E349621AD3397005FC94D /* ResetPasswordController.swift */; };
 		C50E349921AD4D50005FC94D /* EditUsersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50E349821AD4D50005FC94D /* EditUsersController.swift */; };
-		C531421C21AD5986002AFA3D /* CreaterUserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C531421B21AD5986002AFA3D /* CreaterUserController.swift */; };
+		C531421C21AD5986002AFA3D /* CreateUserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C531421B21AD5986002AFA3D /* CreateUserController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,7 +50,7 @@
 		C50E349421AD31B9005FC94D /* UserManagementController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManagementController.swift; sourceTree = "<group>"; };
 		C50E349621AD3397005FC94D /* ResetPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordController.swift; sourceTree = "<group>"; };
 		C50E349821AD4D50005FC94D /* EditUsersController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUsersController.swift; sourceTree = "<group>"; };
-		C531421B21AD5986002AFA3D /* CreaterUserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreaterUserController.swift; sourceTree = "<group>"; };
+		C531421B21AD5986002AFA3D /* CreateUserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUserController.swift; sourceTree = "<group>"; };
 		D33213D640E06E26C4F01940 /* Pods-T02_Blue.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-T02_Blue.release.xcconfig"; path = "Pods/Target Support Files/Pods-T02_Blue/Pods-T02_Blue.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -86,7 +86,6 @@
 		4B0B1E0E21964CED004B5CBA = {
 			isa = PBXGroup;
 			children = (
-				C531421B21AD5986002AFA3D /* CreaterUserController.swift */,
 				4B0B1E1921964CED004B5CBA /* T02_Blue */,
 				4B0B1E1821964CED004B5CBA /* Products */,
 				378D878D996DBB08F609AE63 /* Pods */,
@@ -105,6 +104,7 @@
 		4B0B1E1921964CED004B5CBA /* T02_Blue */ = {
 			isa = PBXGroup;
 			children = (
+				C531421B21AD5986002AFA3D /* CreateUserController.swift */,
 				5165F2E921AA93ED00663B37 /* GoogleService-Info.plist */,
 				4B0B1E1A21964CED004B5CBA /* AppDelegate.swift */,
 				4B0B1E1C21964CED004B5CBA /* LoadingViewController.swift */,
@@ -228,6 +228,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-T02_Blue/Pods-T02_Blue-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
@@ -237,6 +238,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
@@ -265,7 +267,7 @@
 				C50E349921AD4D50005FC94D /* EditUsersController.swift in Sources */,
 				4B0B1E1D21964CED004B5CBA /* LoadingViewController.swift in Sources */,
 				1F8CA094219C760B004436C7 /* AddNewClosetViewController.swift in Sources */,
-				C531421C21AD5986002AFA3D /* CreaterUserController.swift in Sources */,
+				C531421C21AD5986002AFA3D /* CreateUserController.swift in Sources */,
 				C50E349521AD31B9005FC94D /* UserManagementController.swift in Sources */,
 				4B0B1E1B21964CED004B5CBA /* AppDelegate.swift in Sources */,
 			);

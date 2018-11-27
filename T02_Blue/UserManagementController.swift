@@ -41,10 +41,13 @@ class UserManagementController: UITableViewController {
         var items = [UIBarButtonItem]()
         
         // + button, segues to the add closet view
-        items.append(UIBarButtonItem(barButtonSystemItem: .add, target: self, action: nil))
+        items.append(UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(goToUserCreation)))
         self.navigationItem.rightBarButtonItems = items
     }
 
+    @objc func goToUserCreation() -> Void {
+        performSegue(withIdentifier: "to user creation", sender: self)
+    }
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
