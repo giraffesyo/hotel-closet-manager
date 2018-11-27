@@ -3,22 +3,16 @@
 //  T02_Blue
 
 import UIKit
+import FirebaseAuth
 
-class SecondViewController: UIViewController, UITextFieldDelegate {
-
+class LoginViewController: UIViewController, UITextFieldDelegate {
+    
     @IBOutlet weak var userIdTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var forgotPasswordButton: UIButton!
-    @IBOutlet weak var createNewAccount: UIButton!
     @IBOutlet weak var loginButton: UIButton!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    
-    var timer = Timer.self
-    var secondsRemaining = 3
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        activityIndicator.isHidden = true
         userIdTextField.delegate = self
         passwordTextField.delegate = self
     }
@@ -34,7 +28,7 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         
         self.navigationController!.setNavigationBarHidden(false, animated: animated)
     }
-
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
@@ -46,31 +40,33 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func loginButtonAction(_ sender: UIButton)
     {
-       /* if userIdTextField.text == "" || passwordTextField.text == ""
+        // get username and password from the form
+        let username: String = userIdTextField?.text ?? ""
+        let password: String = passwordTextField?.text ?? ""
+        
+        if username == "" || password == ""
         {
-            showIncompleteFieldAlert()
-        }*/
+            showAlert(message: "Please enter your username and password")
+        }
+        Auth.auth().signIn(withEmail: username, password: password) { (user, error) in
+            if user != nil {
+                // we sucessfully logged in, segue to logged in screen
+                self.goToHomeScreen()
+            } else {
+                // we have an error
+                let message = error?.localizedDescription ?? "Something went wrong, sorry"
+                self.showAlert(message: message)
+            }
+        }
+    }
+    
+    func goToHomeScreen() -> Void {
         self.performSegue(withIdentifier: "to home screen", sender: self)
-        
-        /*In this function oyther details are to be added. That is if the entered email-id and password is not there in the database then it would show an alert to the user.*/
-        
-        //if incorrect email-id or password, then
-        // call showAlert()
-        
-        //showAlert()
     }
     
-    @IBAction func showIncompleteFieldAlert()
+    func showAlert(message: String) -> Void
     {
-        let alert = UIAlertController(title: "Incomplete Fields!", message: "Both the fields of e-mail id and password must be filled", preferredStyle: .alert)
-        let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
-        alert.addAction(action)
-        present(alert, animated: true, completion: nil)
-    }
-    
-    @IBAction func showAlert()
-    {
-        let alert = UIAlertController(title: "Oops", message: "The entered email-id and password does not exist. Please try again if you already have an account. If you are a new user then please register.", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Oops", message: message, preferredStyle: .alert)
         let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
         alert.addAction(action)
         present(alert, animated: true, completion: nil)

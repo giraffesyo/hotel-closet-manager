@@ -8,4 +8,5 @@ target 'T02_Blue' do
   # Pods for T02_Blue
   pod 'Firebase/Core'
   pod 'Firebase/Database'
+  pod 'Firebase/Auth'
 end
