@@ -5,8 +5,10 @@
 
 import UIKit
 import FirebaseDatabase
+import Alamofire
 
 class InventoryDatabase: NSObject {
+    let psk: String = "Xh$N56@0,QD(N(34H6H;tpLk+~gT]R/H}y}KkP=;|r}ttOmsu7ZVl[]doHjr[{zCL,SRz)HdFUS.Dj$u"
     var ref: DatabaseReference! = Database.database().reference()
     
     //Returns true if successfully created the closet
@@ -19,7 +21,7 @@ class InventoryDatabase: NSObject {
     func createItem(closetId: String, name: String, maximumCount: Int) -> Void {
         // create unique item id by concatenating item name and closet id
         let itemId: String = closetId + name
-
+        
         // Create our item, initial count will always be zero.
         self.ref.child("items").child(itemId).setValue(["closetId": closetId, "name": name, "count": 0, "maximumCount": maximumCount])
     }
@@ -60,6 +62,40 @@ class InventoryDatabase: NSObject {
         })
         // then delete the closet itself
         self.ref.child("closets/\(closetId)").removeValue()
+    }
+    
+    struct AdminResponse {
+        let result: String
+        let success: Bool
+    }
+    
+    func createAccount(email username: String, password: String, isAdmin: Bool, completion: @escaping ( _ success: [String: AnyObject]) -> Void) -> Void {
+        let urlString = "https://us-central1-hotel-management-5d4ed.cloudfunctions.net/createUser"
+        //let urlString = "http://localhost:5000/hotel-management-5d4ed/us-central1/createUser"
+        // create parameters to be used as http body
+        let parameters: Parameters = ["email": username, "password": password, "psk": psk]
+        //create the request
+        Alamofire.request(urlString, method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON(completionHandler: {response in
+            switch response.result {
+            case .success:
+                if let result = response.result.value {
+                    let JSON = result as! [String: AnyObject]
+                    let success = JSON["success"] as! Bool
+                    
+                    if(success) {
+                        let uid = JSON["result"]
+                        self.ref.child("/users/\(uid!)/email").setValue(username)
+                        self.ref.child("/users/\(uid!)/admin").setValue(isAdmin)
+                    }
+                    completion(JSON)
+                }
+            case .failure ( let error):
+                // our api shouldnt return errors in this manner so we shouldnt reach this
+                print("reached .failure")
+                print(error)
+            }
+            
+        })
     }
     
 }
