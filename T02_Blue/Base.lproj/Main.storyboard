@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.13.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aft-58-FeX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aft-58-FeX">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.9"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -48,7 +48,8 @@
                     <connections>
                         <outlet property="activityIndicator" destination="N81-Of-C4q" id="Xmc-Ch-80T"/>
                         <outlet property="loginButton" destination="YHU-7z-3z7" id="Hoi-X6-iUA"/>
-                        <segue destination="fps-xE-7rb" kind="show" identifier="segueToSecondVC" id="s77-zL-NRf"/>
+                        <segue destination="fps-xE-7rb" kind="show" identifier="to login" id="LKT-IM-BFF"/>
+                        <segue destination="iNt-36-cY3" kind="show" identifier="to home" id="siB-p3-xia"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -58,7 +59,7 @@
         <!--Login View Controller-->
         <scene sceneID="T8t-VQ-f7x">
             <objects>
-                <viewController id="fps-xE-7rb" userLabel="Login View Controller" customClass="SecondViewController" customModule="T02_Blue" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="fps-xE-7rb" userLabel="Login View Controller" customClass="LoginViewController" customModule="T02_Blue" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Zxq-BM-YIv">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -99,10 +100,6 @@
                                 <color key="textColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="H3k-s4-gQb">
-                                <rect key="frame" x="202" y="639" width="20" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8lp-Vy-D87">
                                 <rect key="frame" x="120" y="383" width="175" height="59"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -119,7 +116,6 @@
                         <viewLayoutGuide key="safeArea" id="7ek-fe-hKd"/>
                     </view>
                     <connections>
-                        <outlet property="activityIndicator" destination="H3k-s4-gQb" id="h7k-32-rIK"/>
                         <outlet property="loginButton" destination="8lp-Vy-D87" id="2jY-nG-UNt"/>
                         <outlet property="passwordTextField" destination="tl7-c7-NBf" id="t1j-ej-aeX"/>
                         <outlet property="userIdTextField" destination="k26-YV-Ra8" id="qCY-Fo-j1f"/>
@@ -128,7 +124,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KIc-5s-bcD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1857.9710144927537" y="131.25"/>
+            <point key="canvasLocation" x="1787" y="-611"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="q2j-CM-qUw">
@@ -258,7 +254,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kbX-hu-N4L" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2715.9420289855075" y="134.5108695652174"/>
+            <point key="canvasLocation" x="1787" y="135"/>
         </scene>
         <!--Inventory Closets-->
         <scene sceneID="n8J-aM-cFg">
@@ -299,7 +295,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Ex-pI-w1L" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3600" y="132"/>
+            <point key="canvasLocation" x="2580" y="135"/>
         </scene>
         <!--Closet Inventory Details-->
         <scene sceneID="4UD-LI-eVG">
@@ -346,7 +342,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E5Z-dN-gGr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4480" y="131"/>
+            <point key="canvasLocation" x="3459" y="135"/>
         </scene>
         <!--User Management Controller-->
         <scene sceneID="dyB-B6-4dr">
@@ -534,7 +530,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WU6-Aq-n7e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3600.0000000000005" y="902.44565217391312"/>
+            <point key="canvasLocation" x="2580" y="907"/>
         </scene>
         <!--Add Inventory Item-->
         <scene sceneID="fc3-eG-Xmd">
@@ -628,6 +624,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cEG-7g-dp0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4480" y="902"/>
+
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="wLl-kN-kjk">
@@ -645,7 +642,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xcu-h4-DfT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="131.8840579710145" y="134.5108695652174"/>
+            <point key="canvasLocation" x="284" y="135"/>
         </scene>
     </scenes>
     <resources>
@@ -658,4 +655,7 @@
         <image name="people" width="342" height="278"/>
         <image name="user_icon" width="512" height="512"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="siB-p3-xia"/>
+    </inferredMetricsTieBreakers>
 </document>

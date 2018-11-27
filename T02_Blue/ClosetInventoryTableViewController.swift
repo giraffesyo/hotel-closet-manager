@@ -116,9 +116,11 @@ class ClosetInventoryTableViewController: UITableViewController {
                 let id: String = snapshot.key
                 // get new max count out of the dictionary
                 let maximumCount = value["maximumCount"] as! Int
+                let count = value["count"] as! Int
                 //find the item in our items collection and update it
                 let foundIndex: Int = self.items.index { $0.id == id }!
                 self.items[foundIndex].maximumCount = maximumCount
+                self.items[foundIndex].count = count
                 //reload table view
                 self.tableView.reloadData()
             }
@@ -178,18 +180,14 @@ class ClosetInventoryTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
         let selectedItem = items[indexPath.row].id
         let selectedItemName = items[indexPath.row].name
+        let selectedItemCount = items[indexPath.row].count
         
         
         // create alert
-        let alert = UIAlertController(title: "Edit Maximum Quantity", message: "Enter new maximum quantity", preferredStyle: .alert)
-        //add text field
-        alert.addTextField(configurationHandler: {textfield in
-            textfield.text = String(self.items[indexPath.row].maximumCount)
-            textfield.keyboardType = .numberPad
-        })
-        //process the input
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: "Save", style: .default, handler: { (action: UIAlertAction) in
+        let alert = UIAlertController(title: "Edit Maximum Quantity", message: "Enter new maximum quantity\nMust fit currrent stock: \(selectedItemCount!)", preferredStyle: .alert)
+        //create actions
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let saveAction = UIAlertAction(title: "Save", style: .default, handler: { (action: UIAlertAction) in
             guard let textField = alert.textFields?.first else {
                 return
             }
@@ -199,8 +197,65 @@ class ClosetInventoryTableViewController: UITableViewController {
             }
             
             self.db.updateItemDetails(itemId: selectedItem, name: selectedItemName!, maximumCount: newMaximumCount)
-        }))
+        })
+        // disable save until input is valid
+        saveAction.isEnabled = false
+        //add text field
+        alert.addTextField(configurationHandler: {textfield in
+            textfield.placeholder = "Enter a new maximum"
+            textfield.keyboardType = .numberPad
+            // register changes to the text field to make sure that it is always a valid input, if it isnt, keep the save button disabled
+            NotificationCenter.default.addObserver(forName: UITextField.textDidChangeNotification, object: textfield, queue: OperationQueue.main, using: {(notification) in
+                guard let valueEntered = Int(textfield.text!) else {
+                    saveAction.isEnabled = false
+                    return
+                }
+                saveAction.isEnabled = valueEntered >= selectedItemCount!})
+        })
+        // present the alert
+        alert.addAction(cancelAction)
+        alert.addAction(saveAction)
         present(alert, animated: true, completion: nil)
+    }
+    
+    // Event called when a row is tapped, used for making the alert that allows quantity change
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //The user selected a cell, we don't do anything if we're in editing mode
+        if(!self.Editing){
+            let selectedItem = items[indexPath.row].id
+            let selectedItemName = items[indexPath.row].name
+            let selectedItemMaximumCount = items[indexPath.row].maximumCount
+            // create alert
+            let alert = UIAlertController(title: "Edit Quantity", message: "Enter current count. \nMust be less than \(self.items[indexPath.row].maximumCount!)", preferredStyle: .alert)
+            //create actions
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            let saveAction = UIAlertAction(title: "Save", style: .default, handler: { (action: UIAlertAction) in
+                guard let textField = alert.textFields?.first else {
+                    return
+                }
+                guard let newCount: Int = Int(textField.text!) else {
+                    //they entered a string
+                    return
+                }
+                self.db.updateItemCount(itemId: selectedItem, count: newCount)
+            })
+            //add text field
+            alert.addTextField(configurationHandler: {textfield in
+                textfield.placeholder = "Enter new count for: \(selectedItemName!)"
+                textfield.keyboardType = .numberPad
+                NotificationCenter.default.addObserver(forName: UITextField.textDidChangeNotification, object: textfield, queue: OperationQueue.main, using: {(notification) in
+                    guard let valueEntered = Int(textfield.text!) else {
+                        saveAction.isEnabled = false
+                        return
+                    }
+                    saveAction.isEnabled = valueEntered <= selectedItemMaximumCount!
+                })
+            })
+            //process the input
+            alert.addAction(cancelAction)
+            alert.addAction(saveAction)
+            present(alert, animated: true, completion: nil)
+        }
     }
     
     
@@ -212,7 +267,6 @@ class ClosetInventoryTableViewController: UITableViewController {
         cell.accessoryType = UITableViewCell.AccessoryType.detailButton
         cell.textLabel?.text = cellText
         cell.detailTextLabel?.text = cellSubText
-        
         return cell
     }
     
