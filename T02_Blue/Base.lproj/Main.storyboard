@@ -295,7 +295,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Ex-pI-w1L" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2580" y="135"/>
+            <point key="canvasLocation" x="2538" y="848"/>
         </scene>
         <!--Closet Inventory Details-->
         <scene sceneID="4UD-LI-eVG">
@@ -342,7 +342,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E5Z-dN-gGr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3459" y="135"/>
+            <point key="canvasLocation" x="3246" y="848"/>
         </scene>
         <!--User Management Controller-->
         <scene sceneID="dyB-B6-4dr">
@@ -370,7 +370,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sGw-v5-Xpk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1978" y="902"/>
+            <point key="canvasLocation" x="2538" y="135"/>
         </scene>
         <!--Reset Password Controller-->
         <scene sceneID="l4a-it-0J1">
@@ -437,7 +437,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rZH-dF-h4k" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2774" y="902"/>
+            <point key="canvasLocation" x="2538" y="-611"/>
         </scene>
         <!--Add New Closet-->
         <scene sceneID="Fzr-Yq-IDu">
@@ -530,7 +530,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WU6-Aq-n7e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2580" y="907"/>
+            <point key="canvasLocation" x="3245" y="1558"/>
         </scene>
         <!--Add Inventory Item-->
         <scene sceneID="fc3-eG-Xmd">
@@ -623,8 +623,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cEG-7g-dp0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4480" y="902"/>
-
+            <point key="canvasLocation" x="3948" y="848"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="wLl-kN-kjk">
@@ -656,6 +655,6 @@
         <image name="user_icon" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="siB-p3-xia"/>
+        <segue reference="KrZ-dG-feE"/>
     </inferredMetricsTieBreakers>
 </document>
