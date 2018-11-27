@@ -21,7 +21,7 @@ class InventoryDatabase: NSObject {
     func createItem(closetId: String, name: String, maximumCount: Int) -> Void {
         // create unique item id by concatenating item name and closet id
         let itemId: String = closetId + name
-
+        
         // Create our item, initial count will always be zero.
         self.ref.child("items").child(itemId).setValue(["closetId": closetId, "name": name, "count": 0, "maximumCount": maximumCount])
     }
@@ -69,7 +69,7 @@ class InventoryDatabase: NSObject {
         let success: Bool
     }
     
-    func createAccount(email username: String, password: String, completion: @escaping ( _ success: [String: AnyObject]) -> Void) -> Void {
+    func createAccount(email username: String, password: String, isAdmin: Bool, completion: @escaping ( _ success: [String: AnyObject]) -> Void) -> Void {
         let urlString = "https://us-central1-hotel-management-5d4ed.cloudfunctions.net/createUser"
         //let urlString = "http://localhost:5000/hotel-management-5d4ed/us-central1/createUser"
         // create parameters to be used as http body
@@ -80,6 +80,13 @@ class InventoryDatabase: NSObject {
             case .success:
                 if let result = response.result.value {
                     let JSON = result as! [String: AnyObject]
+                    let success = JSON["success"] as! Bool
+                    
+                    if(success) {
+                        let uid = JSON["result"]
+                        self.ref.child("/users/\(uid!)/email").setValue(username)
+                        self.ref.child("/users/\(uid!)/admin").setValue(isAdmin)
+                    }
                     completion(JSON)
                 }
             case .failure ( let error):
@@ -89,6 +96,6 @@ class InventoryDatabase: NSObject {
             }
             
         })
-        }
+    }
     
 }

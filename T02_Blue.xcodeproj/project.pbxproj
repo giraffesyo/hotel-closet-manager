@@ -19,6 +19,7 @@
 		4B0B1E2321964CED004B5CBA /* T02_Blue.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4B0B1E2121964CED004B5CBA /* T02_Blue.xcdatamodeld */; };
 		4B0B1E2521964CF6004B5CBA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B0B1E2421964CF6004B5CBA /* Assets.xcassets */; };
 		4B0B1E2821964CF6004B5CBA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B0B1E2621964CF6004B5CBA /* LaunchScreen.storyboard */; };
+		51460EE221ADB18400D88558 /* LoadingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51460EE121ADB18400D88558 /* LoadingButton.swift */; };
 		5165F2EA21AA93ED00663B37 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5165F2E921AA93ED00663B37 /* GoogleService-Info.plist */; };
 		5165F2EC21AA964100663B37 /* InventoryDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5165F2EB21AA964100663B37 /* InventoryDatabase.swift */; };
 		51A9477E21ABB30000D9D8F9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A9477D21ABB30000D9D8F9 /* HomeViewController.swift */; };
@@ -44,6 +45,7 @@
 		4B0B1E2421964CF6004B5CBA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4B0B1E2721964CF6004B5CBA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4B0B1E2921964CF6004B5CBA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		51460EE121ADB18400D88558 /* LoadingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingButton.swift; sourceTree = "<group>"; };
 		5165F2E921AA93ED00663B37 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5165F2EB21AA964100663B37 /* InventoryDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryDatabase.swift; sourceTree = "<group>"; };
 		51A9477D21ABB30000D9D8F9 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				C50E349421AD31B9005FC94D /* UserManagementController.swift */,
 				C50E349621AD3397005FC94D /* ResetPasswordController.swift */,
 				C50E349821AD4D50005FC94D /* EditUsersController.swift */,
+				51460EE121ADB18400D88558 /* LoadingButton.swift */,
 			);
 			path = T02_Blue;
 			sourceTree = "<group>";
@@ -268,6 +271,7 @@
 				4B0B1E1D21964CED004B5CBA /* LoadingViewController.swift in Sources */,
 				1F8CA094219C760B004436C7 /* AddNewClosetViewController.swift in Sources */,
 				C531421C21AD5986002AFA3D /* CreateUserController.swift in Sources */,
+				51460EE221ADB18400D88558 /* LoadingButton.swift in Sources */,
 				C50E349521AD31B9005FC94D /* UserManagementController.swift in Sources */,
 				4B0B1E1B21964CED004B5CBA /* AppDelegate.swift in Sources */,
 			);
