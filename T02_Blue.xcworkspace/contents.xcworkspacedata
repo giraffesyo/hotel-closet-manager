@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:ResetPasswordViewController.swift">
+   </FileRef>
+   <FileRef
       location = "group:T02_Blue.xcodeproj">
    </FileRef>
    <FileRef

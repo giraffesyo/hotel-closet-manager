@@ -22,6 +22,8 @@
 		5165F2EA21AA93ED00663B37 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5165F2E921AA93ED00663B37 /* GoogleService-Info.plist */; };
 		5165F2EC21AA964100663B37 /* InventoryDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5165F2EB21AA964100663B37 /* InventoryDatabase.swift */; };
 		51A9477E21ABB30000D9D8F9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A9477D21ABB30000D9D8F9 /* HomeViewController.swift */; };
+		C50E349521AD31B9005FC94D /* UserManagementController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50E349421AD31B9005FC94D /* UserManagementController.swift */; };
+		C50E349721AD3397005FC94D /* ResetPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50E349621AD3397005FC94D /* ResetPasswordController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +45,8 @@
 		5165F2E921AA93ED00663B37 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5165F2EB21AA964100663B37 /* InventoryDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryDatabase.swift; sourceTree = "<group>"; };
 		51A9477D21ABB30000D9D8F9 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		C50E349421AD31B9005FC94D /* UserManagementController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManagementController.swift; sourceTree = "<group>"; };
+		C50E349621AD3397005FC94D /* ResetPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordController.swift; sourceTree = "<group>"; };
 		D33213D640E06E26C4F01940 /* Pods-T02_Blue.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-T02_Blue.release.xcconfig"; path = "Pods/Target Support Files/Pods-T02_Blue/Pods-T02_Blue.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -111,6 +115,8 @@
 				4B0B1E2121964CED004B5CBA /* T02_Blue.xcdatamodeld */,
 				5165F2EB21AA964100663B37 /* InventoryDatabase.swift */,
 				51A9477D21ABB30000D9D8F9 /* HomeViewController.swift */,
+				C50E349421AD31B9005FC94D /* UserManagementController.swift */,
+				C50E349621AD3397005FC94D /* ResetPasswordController.swift */,
 			);
 			path = T02_Blue;
 			sourceTree = "<group>";
@@ -242,6 +248,7 @@
 			files = (
 				1F09A2842198E31300833D6E /* InventoryClosetsTableViewController.swift in Sources */,
 				5165F2EC21AA964100663B37 /* InventoryDatabase.swift in Sources */,
+				C50E349721AD3397005FC94D /* ResetPasswordController.swift in Sources */,
 				1FA11C75219684140018A52E /* LoginViewController.swift in Sources */,
 				1F8CA096219C7684004436C7 /* ClosetInventoryTableViewController.swift in Sources */,
 				1F8CA098219C7708004436C7 /* AddInventoryItemViewController.swift in Sources */,
@@ -249,6 +256,7 @@
 				4B0B1E2321964CED004B5CBA /* T02_Blue.xcdatamodeld in Sources */,
 				4B0B1E1D21964CED004B5CBA /* LoadingViewController.swift in Sources */,
 				1F8CA094219C760B004436C7 /* AddNewClosetViewController.swift in Sources */,
+				C50E349521AD31B9005FC94D /* UserManagementController.swift in Sources */,
 				4B0B1E1B21964CED004B5CBA /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

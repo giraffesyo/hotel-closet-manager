@@ -34,22 +34,22 @@ class HomeViewController: UIViewController {
         UsersStackView.addGestureRecognizer(usersTapGesture)
     }
     
+    //Segue to the invetory closet view
     @objc func goToInventory() -> Void {
         performSegue(withIdentifier: "to inventory closets", sender: self)
     }
+    //Segue to the password reset view
     @objc func goToPassword() -> Void {
-        // todo
-        print("not implemented")
+        performSegue(withIdentifier: "to password reset", sender: self)
     }
     
     @objc func performLogout() -> Void {
         //todo
         print("not implemented")
     }
-    
+    //Segue to the users view
     @objc func goToUsers() -> Void {
-        //todo
-        print("not implemented")
+        performSegue(withIdentifier: "to users", sender: self)
     }
     
     /*
