@@ -15,6 +15,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         userIdTextField.delegate = self
         passwordTextField.delegate = self
+
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        // if we're logged in segue to home screen
+        if Auth.auth().currentUser != nil{
+            self.goToHomeScreen()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

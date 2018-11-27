@@ -47,14 +47,11 @@
                     <navigationItem key="navigationItem" id="QNB-bW-uxP"/>
                     <connections>
                         <outlet property="activityIndicator" destination="N81-Of-C4q" id="Xmc-Ch-80T"/>
-                        <outlet property="loginButton" destination="YHU-7z-3z7" id="Hoi-X6-iUA"/>
-                        <segue destination="fps-xE-7rb" kind="show" identifier="to login" id="LKT-IM-BFF"/>
-                        <segue destination="iNt-36-cY3" kind="show" identifier="to home" id="siB-p3-xia"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1039.1304347826087" y="134.5108695652174"/>
+            <point key="canvasLocation" x="-490" y="-498"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="T8t-VQ-f7x">
@@ -104,17 +101,23 @@
                                 <rect key="frame" x="120" y="383" width="175" height="59"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <state key="normal" title="LOGIN" backgroundImage="blue_button">
+                                <state key="normal" title="Login" backgroundImage="blue_button">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
                                     <action selector="loginButtonAction:" destination="fps-xE-7rb" eventType="touchUpInside" id="xLC-1C-dxJ"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tQ0-wV-pc5">
+                                <rect key="frame" x="256" y="345" width="138" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Create new account"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="7ek-fe-hKd"/>
                     </view>
+                    <navigationItem key="navigationItem" id="JRU-n4-p74"/>
                     <connections>
                         <outlet property="loginButton" destination="8lp-Vy-D87" id="2jY-nG-UNt"/>
                         <outlet property="passwordTextField" destination="tl7-c7-NBf" id="t1j-ej-aeX"/>
@@ -124,7 +127,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KIc-5s-bcD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1787" y="-611"/>
+            <point key="canvasLocation" x="975" y="135"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="q2j-CM-qUw">
@@ -254,7 +257,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kbX-hu-N4L" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1787" y="135"/>
+            <point key="canvasLocation" x="1632" y="135"/>
         </scene>
         <!--Inventory Closets-->
         <scene sceneID="n8J-aM-cFg">
@@ -771,12 +774,12 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="zzp-kV-UKb"/>
+                        <segue destination="fps-xE-7rb" kind="relationship" relationship="rootViewController" id="J4h-xE-khN"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xcu-h4-DfT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="284" y="135"/>
+            <point key="canvasLocation" x="306" y="135"/>
         </scene>
     </scenes>
     <resources>
@@ -789,7 +792,4 @@
         <image name="people" width="342" height="278"/>
         <image name="user_icon" width="512" height="512"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="KrZ-dG-feE"/>
-    </inferredMetricsTieBreakers>
 </document>

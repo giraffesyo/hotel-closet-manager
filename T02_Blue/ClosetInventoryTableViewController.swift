@@ -136,12 +136,17 @@ class ClosetInventoryTableViewController: UITableViewController {
         })
     }
     
+    
     // Loads the items from firebase, sets up an observer which automatically updates the view whenever a new item is added
     func loadItems() -> Void {
+
         //if we already registered an observer, unregister it
         if itemObserverIdentifier != 0 {
             self.ref.removeObserver(withHandle: itemObserverIdentifier)
         }
+        //todo: rewrite using the logic found at https://firebase.google.com/docs/database/ios/lists-of-data
+        // current issue is that we're recreating entire list each time an event is observed
+        // we can optimize this by only updating the data that changes
         // create a callback that subscribes to child added events for the items key in this closet
         self.itemObserverIdentifier = self.ref.child("items").queryOrdered(byChild: "closetId").queryEqual(toValue: self.closet).observe(.childAdded, with: {snapshot in
             
