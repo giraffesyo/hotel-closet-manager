@@ -370,16 +370,19 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nmb-E4-aze">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nmb-E4-aze" customClass="LoadingButton" customModule="T02_Blue" customModuleProvider="target">
                                 <rect key="frame" x="136" y="366" width="143" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <state key="normal" title="Save" backgroundImage="blue_button">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="SavePressed:" destination="10d-DL-hNS" eventType="touchUpInside" id="fQF-nV-Fuk"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Example@Example.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y6q-ce-871">
-                                <rect key="frame" x="38" y="114" width="307" height="21"/>
+                                <rect key="frame" x="38" y="104" width="307" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
@@ -389,6 +392,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="WCk-AB-0cW"/>
                     </view>
+                    <connections>
+                        <outlet property="AdministratorInputSwitch" destination="OXs-bS-sHO" id="0nB-pa-4ds"/>
+                        <outlet property="EmailLabel" destination="Y6q-ce-871" id="uKr-Ym-5Kp"/>
+                        <outlet property="PasswordInputBox" destination="u11-jM-bWR" id="JtC-vK-Nmf"/>
+                        <outlet property="SaveButton" destination="Nmb-E4-aze" id="6Ce-k4-fwd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o4g-H7-wZI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

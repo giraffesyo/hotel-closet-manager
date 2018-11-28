@@ -64,9 +64,39 @@ class InventoryDatabase: NSObject {
         self.ref.child("closets/\(closetId)").removeValue()
     }
     
+    /*
     struct AdminResponse {
         let result: String
         let success: Bool
+    }*/
+    
+    func updateUser(uid: String, admin: Bool, completion: @escaping () -> Void) -> Void {
+        
+        self.ref.child("/users/\(uid)/admin").setValue(admin)
+        completion()
+    }
+    
+    func updateUser(uid: String, password: String, admin: Bool, completion: @escaping ( _ success: [String: AnyObject]) -> Void) -> Void {
+        self.ref.child("/users/\(uid)/admin").setValue(admin)
+        let urlString = "https://us-central1-hotel-management-5d4ed.cloudfunctions.net/updateUser"
+        
+        let parameters: Parameters = ["uid": uid, "password": password, "psk": psk]
+        
+        //create the request
+        Alamofire.request(urlString, method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON(completionHandler: {response in
+            switch response.result {
+            case .success:
+                if let result = response.result.value {
+                    let JSON = result as! [String: AnyObject]
+                    completion(JSON)
+                }
+            case .failure ( let error):
+                // our api shouldnt return errors in this manner so we shouldnt reach this
+                print("reached .failure")
+                print(error)
+            }
+            
+        })
     }
     
     func createAccount(email username: String, password: String, isAdmin: Bool, completion: @escaping ( _ success: [String: AnyObject]) -> Void) -> Void {

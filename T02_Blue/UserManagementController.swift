@@ -17,8 +17,10 @@ class UserManagementController: UITableViewController {
         }
         let uid: String
         let email: String
+        let admin: Bool
     }
     var users = [User]()
+    var selectedUser: User? = nil
     
     var usersRef: DatabaseReference! = Database.database().reference().child("/users")
     override func viewDidLoad() {
@@ -46,6 +48,7 @@ class UserManagementController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.selectedUser = users[indexPath.row]
         performSegue(withIdentifier: "to edit user", sender: self)
     }
     
@@ -67,7 +70,8 @@ class UserManagementController: UITableViewController {
             let uid = snapshot.key
             let value = snapshot.value as! [String: AnyObject]
             let email = value["email"] as! String
-            let user = User(uid: uid, email: email)
+            let admin = value["admin"] as! Bool
+            let user = User(uid: uid, email: email, admin: admin)
             self.users.append(user)
             self.tableView.insertRows(at: [IndexPath(row: self.users.count-1, section: 0)], with: UITableView.RowAnimation.automatic)
         })
@@ -76,7 +80,8 @@ class UserManagementController: UITableViewController {
             let uid = snapshot.key
             let value = snapshot.value as! [String: AnyObject]
             let email = value["email"] as! String
-            let user = User(uid: uid, email: email)
+            let admin = value["admin"] as! Bool
+            let user = User(uid: uid, email: email, admin: admin)
             
             let index = self.users.index(of: user)!
             self.users.remove(at: index)
@@ -91,6 +96,15 @@ class UserManagementController: UITableViewController {
         
 
         return cell
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "to edit user"{
+            let destination = segue.destination as! EditUsersController
+            // give the user to the edit screen so we can edit the correct user and prefill the form
+            destination.User = selectedUser
+        }
+        
     }
     
 
