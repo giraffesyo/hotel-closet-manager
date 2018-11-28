@@ -114,10 +114,12 @@ class InventoryDatabase: NSObject {
                     
                     if(success) {
                         let uid = JSON["result"]
-                        self.ref.child("/users/\(uid!)/email").setValue(username)
-                        self.ref.child("/users/\(uid!)/admin").setValue(isAdmin)
+                        let user: Parameters = ["email": username, "admin": isAdmin]
+                        self.ref.child("/users/\(uid!)").updateChildValues(user) {
+                            error, ref in
+                            completion(JSON)
+                        }
                     }
-                    completion(JSON)
                 }
             case .failure ( let error):
                 // our api shouldnt return errors in this manner so we shouldnt reach this
