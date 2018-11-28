@@ -10,7 +10,6 @@ admin.initializeApp({
 const psk =
   'Xh$N56@0,QD(N(34H6H;tpLk+~gT]R/H}y}KkP=;|r}ttOmsu7ZVl[]doHjr[{zCL,SRz)HdFUS.Dj$u'
 
-
 exports.createUser = functions.https.onRequest((request, response) => {
   console.log(request.body)
   if (request.body.psk !== psk) {
@@ -20,16 +19,33 @@ exports.createUser = functions.https.onRequest((request, response) => {
     //valid connection
 
     // get email and password from body
-    const {email, password, administrator} = request.body
+    const { email, password } = request.body
     admin
       .auth()
       .createUser({
         email,
         emailVerified: true,
-        password
+        password, 
       })
       .then(userRecord => {
         return response.send({ success: true, result: userRecord.uid })
+      })
+      .catch(error => {
+        return response.send({ success: false, result: error })
+      })
+  }
+})
+
+exports.updateUser = functions.https.onRequest((request, response) => {
+  const { uid, password } = request.body
+  if (request.body.psk !== psk) {
+    return response.send({ success: false, result: 'Invalid psk' })
+  } else {
+    admin
+      .auth()
+      .updateUser(uid, { password })
+      .then(userRecord => {
+        return response.send({ success: true, result: userRecord.toJSON() })
       })
       .catch(error => {
         return response.send({ success: false, result: error })
