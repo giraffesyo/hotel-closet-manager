@@ -10,18 +10,23 @@ import UIKit
 import FirebaseAuth
 
 class HomeViewController: UIViewController {
-
+    
     @IBOutlet var InventoryStackView: UIStackView!
     @IBOutlet var PasswordStackView: UIStackView!
     @IBOutlet var LogoutStackView: UIStackView!
     @IBOutlet var UsersStackView: UIStackView!
+    var db: InventoryDatabase = InventoryDatabase.init()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupTapGestures()
         //add tap gestures to our views
-        
-        // Do any additional setup after loading the view.
+        setupTapGestures()
+        // if our user is an admin we should show the users view
+        db.checkIfAdmin(uid: Auth.auth().currentUser!.uid, completion: {(admin) in
+            if ( admin) {
+                self.UsersStackView.isHidden = false
+            }
+        })
     }
     
     
@@ -69,13 +74,13 @@ class HomeViewController: UIViewController {
     }
     
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

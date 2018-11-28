@@ -38,6 +38,8 @@ class CreateUserController: UIViewController {
         db.createAccount(email: email, password: password, isAdmin: shouldBeAdmin) { (Response) in
             let success = Response["success"] as! Bool
             if success{
+                //clear the password textbox
+                self.PasswordInputBox.text = ""
                 // we have their uid if it was successful
                 let title = "Success"
                 let message = "Successfully created account"

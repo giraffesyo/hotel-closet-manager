@@ -65,10 +65,19 @@ class InventoryDatabase: NSObject {
     }
     
     /*
-    struct AdminResponse {
-        let result: String
-        let success: Bool
-    }*/
+     struct AdminResponse {
+     let result: String
+     let success: Bool
+     }*/
+    
+    
+    func checkIfAdmin(uid: String, completion: @escaping ( _ isAdmin: Bool) -> Void) -> Void {
+        self.ref.child("users/\(uid)/admin").observeSingleEvent(of: .value, with: {(snapshot) in
+            let isAdmin = snapshot.value as! Bool
+            completion(isAdmin)
+            
+        })
+    }
     
     func updateUser(uid: String, admin: Bool, completion: @escaping () -> Void) -> Void {
         
@@ -105,8 +114,6 @@ class InventoryDatabase: NSObject {
         // within firebase, as the in-app creation of users ensures their entry
         // into the database
         self.ref.child("users").observeSingleEvent(of: .value, with: {(snapshot) in
-            print("were at top of observesingleevent")
-            print(snapshot)
             if(snapshot.childrenCount == 0 ){
                 //make them an admin
                 snapshot.ref.child(uid).updateChildValues(["email": email, "admin": true])
