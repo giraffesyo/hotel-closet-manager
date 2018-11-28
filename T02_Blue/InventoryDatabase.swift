@@ -99,6 +99,25 @@ class InventoryDatabase: NSObject {
         })
     }
     
+    func VerifyUserAgainstDb(uid: String, email: String) -> Void {
+        // we need to ensure that this user is in the database
+        // the only way a user would not be in the database is if it was made directly
+        // within firebase, as the in-app creation of users ensures their entry
+        // into the database
+        self.ref.child("users").observeSingleEvent(of: .value, with: {(snapshot) in
+            print("were at top of observesingleevent")
+            print(snapshot)
+            if(snapshot.childrenCount == 0 ){
+                //make them an admin
+                snapshot.ref.child(uid).updateChildValues(["email": email, "admin": true])
+            } else if !snapshot.hasChild(uid) {
+                snapshot.ref.child(uid).updateChildValues(["email": email, "admin": false])
+            }
+            
+        })
+        
+    }
+    
     func createAccount(email username: String, password: String, isAdmin: Bool, completion: @escaping ( _ success: [String: AnyObject]) -> Void) -> Void {
         let urlString = "https://us-central1-hotel-management-5d4ed.cloudfunctions.net/createUser"
         //let urlString = "http://localhost:5000/hotel-management-5d4ed/us-central1/createUser"

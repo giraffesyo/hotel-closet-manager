@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.13.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aft-58-FeX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aft-58-FeX">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.9"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -353,6 +353,7 @@
                     </tableView>
                     <connections>
                         <segue destination="10d-DL-hNS" kind="show" identifier="to edit user" id="raQ-3L-sxo"/>
+                        <segue destination="Gom-W2-Ev8" kind="show" identifier="to user creation" id="IRf-zL-Ldg"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sGw-v5-Xpk" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -386,7 +387,7 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                             </textField>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OXs-bS-sHO" userLabel="Admin Switch">
                                 <rect key="frame" x="298" y="268" width="49" height="31"/>
@@ -397,11 +398,9 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nmb-E4-aze" customClass="LoadingButton" customModule="T02_Blue" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nmb-E4-aze" customClass="LoadingButton" customModule="T02_Blue" customModuleProvider="target">
                                 <rect key="frame" x="136" y="366" width="143" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
-
                                 <state key="normal" title="Save" backgroundImage="blue_button">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -409,10 +408,8 @@
                                     <action selector="SavePressed:" destination="10d-DL-hNS" eventType="touchUpInside" id="fQF-nV-Fuk"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Example@Example.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y6q-ce-871">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Example@Example.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y6q-ce-871">
                                 <rect key="frame" x="38" y="104" width="307" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -447,7 +444,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o4g-H7-wZI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3244.9275362318845" y="134.5108695652174"/>
+            <point key="canvasLocation" x="3267" y="-611"/>
         </scene>
         <!--Reset Password Controller-->
         <scene sceneID="l4a-it-0J1">
@@ -482,7 +479,7 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" textContentType="password"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6BB-hm-ZDH">
                                 <rect key="frame" x="41.333333333333343" y="273" width="331.33333333333326" height="30"/>
@@ -491,7 +488,7 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" textContentType="password"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5I7-kS-V2w" userLabel="Tb Verify Password">
                                 <rect key="frame" x="41.333333333333343" y="393" width="331.33333333333326" height="30"/>
@@ -502,7 +499,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Csx-25-6qc">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Csx-25-6qc" customClass="LoadingButton" customModule="T02_Blue" customModuleProvider="target">
                                 <rect key="frame" x="134.66666666666666" y="577.66666666666663" width="144.99999999999997" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="145" id="GYe-wi-SeM"/>
@@ -512,6 +509,9 @@
                                 <state key="normal" title="Save" backgroundImage="blue_button">
                                     <color key="titleColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="changePasswordAuth:" destination="H9b-uq-Av6" eventType="touchUpInside" id="B3D-wf-ofz"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -549,7 +549,7 @@
         <!--Create User Controller-->
         <scene sceneID="9WE-Og-4cU">
             <objects>
-                <viewController id="Gom-W2-Ev8" userLabel="Create User Controller" customClass="CreaterUserController" customModule="T02_Blue" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Gom-W2-Ev8" userLabel="Create User Controller" customClass="CreateUserController" customModule="T02_Blue" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HyI-Zl-5qK">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -567,22 +567,22 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="laT-O7-flY" userLabel="TB Employee Email">
-                                <rect key="frame" x="40" y="125" width="331.33333333333331" height="30"/>
+                                <rect key="frame" x="40" y="133" width="331.33333333333331" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Su6-EP-zv3"/>
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uWs-d9-eDr" userLabel="TB Employee Password">
-                                <rect key="frame" x="40" y="238.33333333333334" width="331.33333333333331" height="30.000000000000028"/>
+                                <rect key="frame" x="40" y="253" width="331.33333333333331" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="ezO-W2-cgn"/>
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                             </textField>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="62K-Dg-6OG" userLabel="Admin Switch">
                                 <rect key="frame" x="320" y="310" width="49" height="31"/>
@@ -593,8 +593,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lax-x7-dfu">
-                                <rect key="frame" x="134.66666666666666" y="544.66666666666663" width="144.99999999999997" height="45"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lax-x7-dfu" customClass="LoadingButton" customModule="T02_Blue" customModuleProvider="target">
+                                <rect key="frame" x="134.66666666666666" y="577.66666666666663" width="144.99999999999997" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="0MK-Zf-gfm"/>
                                     <constraint firstAttribute="width" constant="145" id="eMU-8f-E02"/>
@@ -603,6 +603,9 @@
                                 <state key="normal" title="Add" backgroundImage="blue_button">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="AddPressed:" destination="Gom-W2-Ev8" eventType="touchUpInside" id="X5o-hb-htB"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -626,10 +629,16 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="X3t-PK-vkF"/>
                     </view>
+                    <connections>
+                        <outlet property="AdministratorInputSwitch" destination="62K-Dg-6OG" id="HHA-P5-H3p"/>
+                        <outlet property="EmailInputBox" destination="laT-O7-flY" id="UmO-VO-ygC"/>
+                        <outlet property="PasswordInputBox" destination="uWs-d9-eDr" id="9iC-vw-NSK"/>
+                        <outlet property="SaveButton" destination="lax-x7-dfu" id="bI6-5E-L7c"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zd2-RO-qYa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3947.826086956522" y="134.5108695652174"/>
+            <point key="canvasLocation" x="3267" y="135"/>
         </scene>
         <!--Add New Closet-->
         <scene sceneID="Fzr-Yq-IDu">

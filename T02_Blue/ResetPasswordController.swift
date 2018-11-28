@@ -24,7 +24,7 @@ class ResetPasswordController: UIViewController {
     }
     
     
-    @IBAction func changePasswordAuth(_ sender: Any) {
+    @IBAction func changePasswordAuth(_ sender: UIButton) {
         let currentPassword = tbCurrentPassword.text
         let newPassword = tbNewPassword.text
         let verifyPassword = tbVarifyPassword.text

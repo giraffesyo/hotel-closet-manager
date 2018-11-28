@@ -10,11 +10,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var userIdTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
+    var db: InventoryDatabase? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
         userIdTextField.delegate = self
         passwordTextField.delegate = self
+        self.db = InventoryDatabase.init()
 
     }
     override func viewDidAppear(_ animated: Bool) {
@@ -58,7 +60,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             showAlert(message: "Please enter your username and password")
         }
         Auth.auth().signIn(withEmail: username, password: password) { (user, error) in
-            if user != nil {
+            if let user = user {
+                //pass the user to our database to ensure it is part of the users db (separate from auth system)
+                let uid: String = user.user.uid
+                let email: String = user.user.email!
+                self.db!.VerifyUserAgainstDb(uid: uid, email: email)
+                
                 // we sucessfully logged in, segue to logged in screen and clear textboxes
                 self.userIdTextField?.text = ""
                 self.goToHomeScreen()
