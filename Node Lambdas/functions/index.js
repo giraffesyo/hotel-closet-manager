@@ -53,6 +53,31 @@ exports.updateUser = functions.https.onRequest((request, response) => {
   }
 })
 
+
+/*
+// Keeps track of the length of the 'users' child list in a separate property.
+exports.countUsers = functions.database.ref('/users').onWrite(
+  (event) => {
+    console.log(event)
+    console.log(event.data)
+    console.log('number of users: ', event.numChildren())
+    return event.data.ref.parent.child("count/users").set(event.numChildren())
+  });
+
+*/ /*
+// If the number of users gets deleted, recount the number of users
+exports.recountUsers = functions.database.ref('/users/users_count').onDelete((snap) => {
+const counterRef = snap.ref;
+const collectionRef = counterRef.parent
+
+// Return the promise from counterRef.set() so our function
+// waits for this async event to complete before it exits.
+return collectionRef.once('value')
+    .then((messagesData) => counterRef.set(messagesData.numChildren()));
+});
+
+*/
+/*
 exports.listUsers = functions.https.onRequest((request, response) => {
   const { nextPageToken } = request.body
   if (request.body.psk !== psk) {
@@ -70,3 +95,4 @@ exports.listUsers = functions.https.onRequest((request, response) => {
       })
   }
 })
+*/
